@@ -1,0 +1,10 @@
+{
+  "id": "B-drop-off",
+  "start": {"x": -2.0, "y": -0.5, "yaw": 0.0},
+  "goal": {"x": 1.75, "y": -0.55, "yaw": 0.0},
+  "walls": [
+    {"cx": 1.75, "cy": -0.55, "sx": 0.8, "sy": 0.8}
+  ],
+  "budget_s": 120,
+  "deployed": {"params": "deployed/nav2_params.yaml", "map": "deployed/map.yaml"}
+}

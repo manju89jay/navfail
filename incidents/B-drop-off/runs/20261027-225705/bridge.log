@@ -1,0 +1,2 @@
+[INFO] [1793138225.467567337] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/turtlebot3_waffle/pose (gz.msgs.Pose_V) -> /model/turtlebot3_waffle/pose (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[INFO] [1793138257.358138943] [rclcpp]: signal_handler(SIGINT/SIGTERM)

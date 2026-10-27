@@ -1,0 +1,17 @@
+navfail
+Copyright 2026 Manjunath Jayaramaiah
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This project builds on files from the ROS 2 Navigation project (Nav2, by Open Navigation and the
+Nav2 contributors) and its TurtleBot 3 simulation (the TurtleBot 3 Waffle model is by ROBOTIS),
+licensed under the Apache License, Version 2.0:
+
+- nav2_bringup 1.3.13 (https://github.com/ros-navigation/navigation2):
+  incidents/*/deployed/nav2_params.yaml are based on nav2_bringup/params/nav2_params.yaml, with an
+  attribution line added; B-drop-off's copy also has its planner section changed to the Smac 2D planner.
+  incidents/*/deployed/map.pgm are nav2_bringup/maps/tb3_sandbox.pgm with walls drawn in, and
+  incidents/*/deployed/map.yaml point to them (tb3_sandbox.yaml values, rewritten).
+- nav2_minimal_tb3_sim 1.0.1 (https://github.com/ros-navigation/nav2_minimal_turtlebot_simulation):
+  each run's world.sdf.xacro is worlds/tb3_sandbox.sdf.xacro with walls added, and robot.sdf.xacro
+  is urdf/gz_waffle.sdf.xacro with a Gazebo pose publisher added. These are generated at run time.
