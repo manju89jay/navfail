@@ -162,3 +162,97 @@ def test_folder_without_result_json_is_incomplete(tmp_path):
     loaded = load_run(REPO / "incidents" / "A-doorway", run_dir)
     assert loaded["kind"] == "incomplete"
     assert loaded["score"] is None
+
+
+# --- T4: candidate verdict, run counting, allowlist -------------------------
+
+import pytest
+
+from experiment.allowlist import validate_candidate
+from experiment.scoring import evaluate_candidate, runs_counted
+
+
+def fake_run(passed=True, collided=False, reached=True, kind="valid"):
+    if kind != "valid":
+        return {"run": "x", "kind": kind, "score": None}
+    return {"run": "x", "kind": "valid", "score": {
+        "reached_goal": reached, "longest_still_ms": 0, "collided": collided,
+        "passed": passed}}
+
+
+def site(n_pass, extra=None):
+    runs = [fake_run(passed=True) for _ in range(n_pass)]
+    runs += [fake_run(passed=False, reached=False) for _ in range(5 - n_pass)]
+    return runs + (extra or [])
+
+
+EMPTY_OK = [fake_run() for _ in range(3)]
+
+
+def test_proven_needs_four_of_five_site_passes():
+    assert evaluate_candidate(site(4), EMPTY_OK)["proven"] is True
+    assert evaluate_candidate(site(5), EMPTY_OK)["proven"] is True
+
+
+def test_three_of_five_is_not_proven():
+    verdict = evaluate_candidate(site(3), EMPTY_OK)
+    assert verdict["proven"] is False
+    assert verdict["site_passed"] == 3
+
+
+def test_any_collision_voids_proof():
+    runs = site(5)
+    runs[4] = fake_run(passed=False, collided=True)
+    verdict = evaluate_candidate(runs, EMPTY_OK)
+    assert verdict["proven"] is False
+    assert verdict["collisions"] == 1
+
+
+def test_proven_needs_three_of_three_empty_site():
+    empty_bad = [fake_run(), fake_run(), fake_run(passed=False, reached=False)]
+    assert evaluate_candidate(site(5), empty_bad)["proven"] is False
+    assert evaluate_candidate(site(5), EMPTY_OK[:2])["proven"] is False
+
+
+def test_fewer_than_five_valid_site_runs_is_not_proven():
+    runs = [fake_run() for _ in range(4)] + [fake_run(kind="not_ready")]
+    assert evaluate_candidate(runs, EMPTY_OK)["proven"] is False
+
+
+def test_every_result_json_counts_toward_budget_including_screening_and_not_ready():
+    loaded = [fake_run(), fake_run(kind="not_ready"), fake_run(kind="no_goal_reply"),
+              fake_run(kind="runner_error"), fake_run(kind="incomplete")]
+    assert runs_counted(loaded) == 4
+
+
+def test_incomplete_folder_counts_zero():
+    assert runs_counted([fake_run(kind="incomplete")]) == 0
+    assert runs_counted([]) == 0
+
+
+def test_candidate_outside_allowlist_rejected_before_any_run():
+    # the planted synthetic value itself is outside the allowlist
+    with pytest.raises(ValueError):
+        validate_candidate({"CostCritic.cost_weight": 25.0})
+    with pytest.raises(ValueError):
+        validate_candidate({"CostCritic.cost_weight": 0.5})
+    with pytest.raises(ValueError):
+        validate_candidate({"inflation_layer.inflation_radius": 1.01})
+
+
+def test_allowlist_boundaries_are_inclusive_and_size_is_one_to_three():
+    assert validate_candidate({"CostCritic.cost_weight": 1.0}) == {"CostCritic.cost_weight": 1.0}
+    assert validate_candidate({"CostCritic.cost_weight": 10.0}) == {"CostCritic.cost_weight": 10.0}
+    three = {"CostCritic.cost_weight": 3.81, "inflation_layer.cost_scaling_factor": 15.0,
+             "PreferForwardCritic.cost_weight": 0.0}
+    assert validate_candidate(three) == three
+    with pytest.raises(ValueError):
+        validate_candidate({})
+    with pytest.raises(ValueError):
+        validate_candidate({**three, "PathFollowCritic.cost_weight": 5.0})
+    with pytest.raises(ValueError):
+        validate_candidate({"no_such_setting": 1.0})
+    with pytest.raises(ValueError):
+        validate_candidate({"CostCritic.cost_weight": True})
+    with pytest.raises(ValueError):
+        validate_candidate({"CostCritic.cost_weight": "3.81"})

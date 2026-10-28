@@ -103,3 +103,36 @@ def load_run(incident_dir, run_dir):
             trace.append((int(row["t_ms"]), float(row["x"]), float(row["y"])))
     score = score_run(nav2_result, trace, goal, walls=incident.get("walls") or [])
     return {"run": run_dir.name, "kind": "valid", "score": score}
+
+
+def runs_counted(loaded_runs):
+    """Budget count: every run folder holding a result.json counts, screening included.
+
+    Incomplete folders (no result.json) are not runs and count 0.
+    """
+    return sum(1 for r in loaded_runs if r["kind"] != "incomplete")
+
+
+def evaluate_candidate(site_runs, empty_runs):
+    """Proof-rule verdict (EXPERIMENT.md section 5) over loaded runs from load_run.
+
+    Proven iff at least 4 of the first 5 valid site runs passed, no valid site
+    run among those collided, and the first 3 valid empty-site runs all reached
+    the goal. Fewer valid runs than required is not proven, never an error.
+    """
+    site_valid = [r["score"] for r in site_runs if r["kind"] == "valid"][:5]
+    empty_valid = [r["score"] for r in empty_runs if r["kind"] == "valid"][:3]
+    site_passed = sum(1 for s in site_valid if s["passed"])
+    collisions = sum(1 for s in site_valid if s["collided"])
+    empty_passed = sum(1 for s in empty_valid if s["reached_goal"])
+    proven = (len(site_valid) == 5 and site_passed >= 4 and collisions == 0
+              and len(empty_valid) == 3 and empty_passed == 3)
+    return {
+        "proven": bool(proven),
+        "site_passed": site_passed,
+        "site_valid": len(site_valid),
+        "collisions": collisions,
+        "empty_passed": empty_passed,
+        "empty_valid": len(empty_valid),
+        "runs_counted": runs_counted(site_runs) + runs_counted(empty_runs),
+    }
