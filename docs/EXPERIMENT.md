@@ -91,6 +91,16 @@ Neither arm sees `incident.json`, the answer key, or the other arm's results.
 | S5 | Muse | the race (section 7) | all 10 searches finished |
 | S6 | Muse, then author | report: table per search, verdict, all numbers checked by `verify.py`; then the author's review and the demo video | verdict stated |
 
+**S2 freeze (28 October 2026):** scoring files and their tests are frozen at these SHA-256 hashes (rule 3 below). A changed hash voids the result; tell the author instead of editing.
+
+| File | SHA-256 |
+| --- | --- |
+| `experiment/allowlist.py` | `444eacad07376d4dbd159947235031c3f92736b6d4b605e9ae8dd9f71b1ce59f` |
+| `experiment/scoring.py` | `1ac0d599f3f5cf2efa16d20a49bf0766691f0dd3b6fe5951c7cdd3a6180df8e2` |
+| `experiment/verify.py` | `f4dffaf342c54a857860691a3605e29be266262e2039f1784f20117637bfc13e` |
+| `experiment/tests/test_scoring.py` | `571a633805ac1e75cb7b9b012a8cea70676b1049adfd3f1eed5baecde55c91e3` |
+| `experiment/tests/test_verify.py` | `0a48c7fa130f0a67b014b8d29d58061ed0880bd69b285ce206e4f527ad84e625` |
+
 At G1, G2 and before S6's report is published, the agents stop and wait for the author.
 
 ## 9. Rules for the agents
