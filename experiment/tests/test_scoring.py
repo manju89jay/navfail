@@ -94,3 +94,71 @@ def test_clearance_uses_nearest_wall():
     # nearest approach is the first point (-2.0, -0.5), 1.0 m from WALL's left face
     assert score["min_wall_clearance_m"] == 1.0
     assert score["collided"] is False
+
+
+# --- T3: run-file loader against the recorded A/B/C runs (read-only) --------
+
+import json
+from pathlib import Path
+
+from experiment.scoring import load_run
+
+REPO = Path(__file__).resolve().parents[2]
+
+
+def recorded(run_dir):
+    return json.loads((run_dir / "result.json").read_text())["observed"]
+
+
+def run_dirs(incident):
+    return sorted((REPO / "incidents" / incident / "runs").iterdir())
+
+
+def test_recorded_A_runs_recompute_to_recorded_result_json():
+    incident_dir = REPO / "incidents" / "A-doorway"
+    dirs = run_dirs("A-doorway")
+    assert len(dirs) == 3
+    for run_dir in dirs:
+        loaded = load_run(incident_dir, run_dir)
+        assert loaded["kind"] == "valid"
+        want = recorded(run_dir)
+        assert loaded["score"]["reached_goal"] == want["reached_goal"]
+        assert loaded["score"]["longest_still_ms"] == want["longest_still_ms"]
+
+
+def test_recorded_B_runs_all_fail_the_proof_scoring():
+    incident_dir = REPO / "incidents" / "B-drop-off"
+    dirs = run_dirs("B-drop-off")
+    assert len(dirs) == 3
+    for run_dir in dirs:
+        loaded = load_run(incident_dir, run_dir)
+        assert loaded["kind"] == "valid"
+        assert loaded["score"]["reached_goal"] is False
+        assert loaded["score"]["passed"] is False
+
+
+def test_recorded_C_runs_recompute_and_not_ready_is_classified():
+    incident_dir = REPO / "incidents" / "C-corridor"
+    kinds = {}
+    for run_dir in run_dirs("C-corridor"):
+        loaded = load_run(incident_dir, run_dir)
+        kinds[run_dir.name] = loaded["kind"]
+        if loaded["kind"] == "valid":
+            want = recorded(run_dir)
+            assert loaded["score"]["reached_goal"] == want["reached_goal"]
+            assert loaded["score"]["longest_still_ms"] == want["longest_still_ms"]
+            assert loaded["score"]["collided"] is False  # lab: never closer than 0.30 m to a wall
+    # the recorded start-up failure is present and classified, never scored as a pass
+    assert "not_ready" in kinds.values()
+    for run_dir in run_dirs("C-corridor"):
+        loaded = load_run(incident_dir, run_dir)
+        if loaded["kind"] == "not_ready":
+            assert loaded["score"] is None
+
+
+def test_folder_without_result_json_is_incomplete(tmp_path):
+    run_dir = tmp_path / "20260101-000000"
+    run_dir.mkdir()
+    loaded = load_run(REPO / "incidents" / "A-doorway", run_dir)
+    assert loaded["kind"] == "incomplete"
+    assert loaded["score"] is None

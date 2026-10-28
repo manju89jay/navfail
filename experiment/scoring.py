@@ -4,7 +4,10 @@ Pure core: the same inputs give the same output. Times are integer milliseconds
 of simulation time, distances are metres. Conventions mirror reproduce/observe.py
 so a recomputed number can be compared with a recorded result.json.
 """
+import csv
+import json
 import math
+from pathlib import Path
 
 GOAL_TOLERANCE_M = 0.25  # Nav2's stock xy_goal_tolerance (reproduce/observe.py)
 STILL_RADIUS_M = 0.10    # staying within this distance of a window's start is "still"
@@ -69,3 +72,34 @@ def score_run(nav2_result, trace, goal, walls=None):
         "collided": collided,
         "passed": bool(reached and still_ms < STALL_LIMIT_MS and not collided),
     }
+
+
+_KIND_BY_RESULT = {"NOT_READY": "not_ready", "NO_GOAL_REPLY": "no_goal_reply",
+                   "RUNNER_ERROR": "runner_error"}
+
+
+def load_run(incident_dir, run_dir):
+    """Load and score one run folder. Read-only; never writes under incidents/*/runs/.
+
+    Returns {"run": name, "kind": kind, "score": score-or-None}. A folder without
+    result.json is "incomplete" (not a run). NOT_READY / NO_GOAL_REPLY / RUNNER_ERROR
+    runs are classified and recorded, never scored as passes.
+    """
+    incident_dir, run_dir = Path(incident_dir), Path(run_dir)
+    result_path = run_dir / "result.json"
+    if not result_path.exists():
+        return {"run": run_dir.name, "kind": "incomplete", "score": None}
+    record = json.loads(result_path.read_text())
+    nav2_result = record.get("observed", {}).get("nav2_result")
+    if "error" in record:
+        return {"run": run_dir.name, "kind": "runner_error", "score": None}
+    if nav2_result in _KIND_BY_RESULT:
+        return {"run": run_dir.name, "kind": _KIND_BY_RESULT[nav2_result], "score": None}
+    incident = json.loads((incident_dir / "incident.json").read_text())
+    goal = (incident["goal"]["x"], incident["goal"]["y"])
+    trace = []
+    with open(run_dir / "groundtruth.csv", newline="") as f:
+        for row in csv.DictReader(f):
+            trace.append((int(row["t_ms"]), float(row["x"]), float(row["y"])))
+    score = score_run(nav2_result, trace, goal, walls=incident.get("walls") or [])
+    return {"run": run_dir.name, "kind": "valid", "score": score}
