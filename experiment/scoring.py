@@ -29,8 +29,26 @@ def longest_still_ms(trace):
     return still_ms
 
 
+def clearance_to_wall(x, y, wall):
+    """Distance from a point to an axis-aligned wall rectangle; 0.0 inside or on it.
+
+    Walls are {"cx", "cy", "sx", "sy"}: centre and size in metres
+    (reproduce/sim_assets.py).
+    """
+    dx = max(abs(x - wall["cx"]) - wall["sx"] / 2.0, 0.0)
+    dy = max(abs(y - wall["cy"]) - wall["sy"] / 2.0, 0.0)
+    return math.hypot(dx, dy)
+
+
+def min_wall_clearance(trace, walls):
+    """Smallest clearance over the whole trace, or None when there is nothing to measure."""
+    if not trace or not walls:
+        return None
+    return round(min(clearance_to_wall(x, y, w) for _, x, y in trace for w in walls), 3)
+
+
 def score_run(nav2_result, trace, goal, walls=None):
-    """Score one run. walls is accepted for the T2 collision check; None = no walls."""
+    """Score one run against the proof rule's per-run conditions."""
     if trace:
         _, fx, fy = trace[-1]
         final_distance = math.hypot(fx - goal[0], fy - goal[1])
@@ -40,13 +58,14 @@ def score_run(nav2_result, trace, goal, walls=None):
         final_distance = None
         reached = False
         still_ms = 0
-    collided = False
+    clearance = min_wall_clearance(trace, walls)
+    collided = clearance is not None and clearance < ROBOT_RADIUS_M
     return {
         "nav2_result": nav2_result,
         "reached_goal": reached,
         "final_goal_distance_m": None if final_distance is None else round(final_distance, 3),
         "longest_still_ms": still_ms,
-        "min_wall_clearance_m": None,
+        "min_wall_clearance_m": clearance,
         "collided": collided,
         "passed": bool(reached and still_ms < STALL_LIMIT_MS and not collided),
     }

@@ -49,3 +49,48 @@ def test_pass_requires_reached_no_stall_no_collision():
     assert empty["reached_goal"] is False
     assert empty["longest_still_ms"] == 0
     assert empty["passed"] is False
+
+
+# --- T2: collision check vs groundtruth + walls -----------------------------
+
+WALL = {"cx": 0.0, "cy": 0.0, "sx": 2.0, "sy": 2.0}  # rectangle x,y in [-1, 1]
+
+
+def run_along_y(points):
+    return score_run("SUCCEEDED", [(k * 1000, x, y) for k, (x, y) in enumerate(points)], GOAL, walls=[WALL])
+
+
+def test_collision_when_clearance_below_robot_radius():
+    score = run_along_y([(-2.0, -0.5), (1.10, 0.0), (2.0, 0.5)])  # 0.10 m from the wall face
+    assert score["min_wall_clearance_m"] == 0.10
+    assert score["collided"] is True
+    assert score["passed"] is False
+
+
+def test_no_collision_at_exactly_robot_radius():
+    score = run_along_y([(-2.0, -0.5), (1.22, 0.0), (2.0, 0.5)])  # exactly 0.22 m: tangent, not overlap
+    assert score["min_wall_clearance_m"] == 0.22
+    assert score["collided"] is False
+
+
+def test_trace_inside_wall_collides():
+    score = run_along_y([(-2.0, -0.5), (0.0, 0.0), (2.0, 0.5)])
+    assert score["min_wall_clearance_m"] == 0.0
+    assert score["collided"] is True
+
+
+def test_no_walls_never_collides():
+    trace = [(0, -2.0, -0.5), (1000, 0.0, 0.0), (2000, 2.0, 0.5)]
+    for walls in (None, []):
+        score = score_run("SUCCEEDED", trace, GOAL, walls=walls)
+        assert score["min_wall_clearance_m"] is None
+        assert score["collided"] is False
+
+
+def test_clearance_uses_nearest_wall():
+    far_wall = {"cx": 10.0, "cy": 10.0, "sx": 2.0, "sy": 2.0}  # corner at (9, 9)
+    trace = [(0, -2.0, -0.5), (1000, 2.0, 0.5)]
+    score = score_run("SUCCEEDED", trace, GOAL, walls=[WALL, far_wall])
+    # nearest approach is the first point (-2.0, -0.5), 1.0 m from WALL's left face
+    assert score["min_wall_clearance_m"] == 1.0
+    assert score["collided"] is False
