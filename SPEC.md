@@ -46,7 +46,7 @@ Overnight run monitored via run files only; spend stop at $90 (EXPERIMENT.md rul
 1. Separate thinking from simulation. The model never touches the simulator; it only sees curated text: operator note, filtered `nav2.log` (error/warning lines + timeline window), `groundtruth`-derived timeline numbers, deployed `nav2_params.yaml`, allowlist. Keep each prompt at ~20–50k tokens despite the 1M context window — cost and latency stay trivial and the signal stays clean.
 2. Put the stable prefix first (system rules + allowlist + config) and cache it; candidates then differ only in the short suffix (run results so far). This is where prompt caching pays.
 3. Constrain decoding with Structured Outputs (`response_format` json_schema), not prompt-and-parse. No regex scraping; invalid JSON is impossible by construction, so the one-retry rule is only for out-of-range values.
-4. Reasoning effort: `xhigh` (author preference for the most capable setting; decided 28 Oct 2026). Candidates are proposals inside a tiny allowlist; if `xhigh` proves slow, dropping to `high` is a one-word change and does not affect the proof rule. Simulator runs remain the real bottleneck (1–1.5 min each, one at a time).
+4. Reasoning effort: `max` (author set the maximum on 3 Nov 2026; a live probe confirmed this key accepts `max` for `muse-wonder-1.0`). Candidates are proposals inside a tiny allowlist; changing the effort does not affect the proof rule. Simulator runs remain the real bottleneck (1–1.5 min each, one at a time).
 5. Verdict before narrative: `verify.py` recomputes scores from run files; prose is written last from verified numbers only.
 
 ### Budget for this build (one full experiment)

@@ -60,7 +60,7 @@ Baseline: before the race, F's own configuration is run 10 times; the failure mu
 ## 6. The two arms
 
 - **Random arm:** draws a candidate uniformly from the allowlist (1 to 3 settings, values uniform in their ranges), with a recorded seed per search.
-- **Agent arm:** `muse-wonder-1.0` (Meta Model API, Standard mode, reasoning effort `xhigh`), receives the operator note, `nav2.log`, a timeline extracted from the bag by code, the deployed configuration and the allowlist. It returns one candidate as JSON: `{"changes": {setting: value}, "reason": "..."}`. Invalid output: one retry, then the proposal is counted as used, with no runs. After each candidate it is told only that candidate's run results (as numbers from the run files).
+- **Agent arm:** `muse-wonder-1.0` (Meta Model API, Standard mode, reasoning effort `max`, set by the author on 3 Nov 2026 after a live probe confirmed this key accepts it), receives the operator note, `nav2.log`, a timeline extracted from the bag by code, the deployed configuration and the allowlist. It returns one candidate as JSON: `{"changes": {setting: value}, "reason": "..."}`. Invalid output: one retry, then the proposal is counted as used, with no runs. After each candidate it is told only that candidate's run results (as numbers from the run files).
 
 Neither arm sees `incident.json`, the answer key, or the other arm's results.
 
