@@ -171,5 +171,8 @@ def test_meta_client_sends_structured_outputs_and_never_leaks_the_key():
     assert captured["auth"] == "Bearer test-key-not-a-secret"
     assert captured["body"]["model"] == "muse-wonder-1.0"
     assert captured["body"]["response_format"]["type"] == "json_schema"
-    assert captured["body"]["reasoning_effort"] == "xhigh"
+    assert captured["body"]["reasoning_effort"] == "max"
     assert "test-key-not-a-secret" not in json.dumps(captured["body"])
+    sent_schema = json.dumps(captured["body"]["response_format"])
+    assert "maxProperties" not in sent_schema  # the Meta API rejects these keywords
+    assert "minProperties" not in sent_schema

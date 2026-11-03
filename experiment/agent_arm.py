@@ -74,7 +74,8 @@ class AgentProposer:
         system = (
             "You investigate one reproducible Nav2 navigation failure. Propose ONE "
             "configuration change as JSON: {\"changes\": {setting: value}, \"reason\": \"...\"}. "
-            "Change 1 to 3 of these allowlisted settings, values inside the allowed ranges:\n"
+            "Change 1 to 3 of these allowlisted settings, values inside the allowed ranges. "
+            "Set every setting you do not change to null:\n"
             f"{allowlist}\n"
             "Nothing else may be changed. The deployed configuration under test is:\n"
             f"{params}")
@@ -127,6 +128,25 @@ class AgentProposer:
                 + self.usage["output_tokens"] * OUTPUT_USD_PER_TOKEN)
 
 
+def _api_schema(node):
+    """Adapt CANDIDATE_SCHEMA to what the Meta structured-outputs API accepts.
+
+    It rejects min/maxProperties (validate_candidate enforces 1-to-3 locally)
+    and, in strict mode, requires every property in `required`; optional
+    settings become nullable there and the client drops the nulls.
+    """
+    if not isinstance(node, dict):
+        return node
+    out = {k: _api_schema(v) for k, v in node.items()
+           if k not in ("minProperties", "maxProperties")}
+    if "properties" in out and "required" not in out:
+        out["required"] = list(out["properties"])
+        for prop in out["properties"].values():
+            if isinstance(prop, dict) and "type" in prop:
+                prop["type"] = [prop["type"], "null"]
+    return out
+
+
 def make_meta_client(api_key, opener=urllib.request.urlopen):
     """OpenAI-compatible chat client; the key travels only in the auth header."""
     def client(messages):
@@ -134,8 +154,8 @@ def make_meta_client(api_key, opener=urllib.request.urlopen):
             "model": MODEL,
             "messages": messages,
             "response_format": {"type": "json_schema", "json_schema": {
-                "name": "candidate", "strict": True, "schema": CANDIDATE_SCHEMA}},
-            "reasoning_effort": "xhigh",
+                "name": "candidate", "strict": True, "schema": _api_schema(CANDIDATE_SCHEMA)}},
+            "reasoning_effort": "max",
         }
         request = urllib.request.Request(
             API_URL, data=json.dumps(body).encode(), method="POST",
@@ -144,6 +164,9 @@ def make_meta_client(api_key, opener=urllib.request.urlopen):
         with opener(request) as response:
             payload = json.loads(response.read())
         candidate = json.loads(payload["choices"][0]["message"]["content"])
+        if isinstance(candidate.get("changes"), dict):
+            candidate["changes"] = {k: v for k, v in candidate["changes"].items()
+                                     if v is not None}
         usage = payload.get("usage") or {}
         return {"candidate": candidate,
                 "usage": {"input_tokens": usage.get("prompt_tokens", 0),
