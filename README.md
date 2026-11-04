@@ -1,8 +1,36 @@
 # navfail
 
-**Status, 28 October 2026:** this repository holds a problem statement, a summary of research, and two navigation failures that can be reproduced in simulation with one command. **The investigating agent does not exist yet.** Everything below about what navfail will do is a plan; section 6 lists the known limits.
+**Status, 4 November 2026:** the hackathon experiment below is built and finished. The wider product described later in this page is not built; where this page describes it, it says so. Section 6 lists the known limits.
 
 The research behind this page is summarised in `docs/RESEARCH.md`. Terms are explained in section 13.
+
+## What was built and what it found
+
+navfail is now three things that work together in this repository:
+
+- **A reproduction harness** (`reproduce/`): rebuilds a recorded Nav2 failure in the TurtleBot 3 Gazebo sandbox and records every run (result, logs, true trajectory, deployed configuration).
+- **A frozen referee** (`experiment/scoring.py` and `experiment/verify.py`): scores each run the same way and recomputes every reported number from the raw run files. A candidate fix is proven only if it reaches the goal with no stall of 15 s or more in at least 4 of 5 runs in the site, collides in no run, and reaches the goal in 3 of 3 runs on the empty site. The referee's files were frozen with SHA-256 hashes before the race and not edited afterwards.
+- **A race** (`experiment/`): a Muse Wonder 1.0 agent, run through the Meta Model API at maximum reasoning effort, against seeded random search. Both may change only the same six Nav2 settings, both get the same 40-run budget per search, and every run counts.
+
+The test failure is `incidents/C-corridor`, a synthetic 0.55 m corridor with one planted setting (`CostCritic.cost_weight` 25.0 instead of the stock 3.81). With its own deployed configuration it failed 10 of 10 baseline runs. Five searches per arm gave:
+
+| Arm | Runs to first proven fix, per search | Median |
+| --- | --- | ---: |
+| Muse Wonder agent | 8, 8, 8, 8, 8 | 8 |
+| Random search | 18, 9, 8, 28, 9 | 9 |
+
+The verdict recorded in `docs/REPORT.md` is "fewer" for the agent. **Caveats, stated with the result:** the failure is synthetic and easy, and the planted cause is visible in the deployed configuration; the difference is one run of median over only five searches per arm, so this is descriptive, not a statistical claim; and in the earlier one-search dry run the agent did not prove a fix while random search did.
+
+As a follow-up, a warehouse shelf-aisle incident (`incidents/W-warehouse`) was built to test a publicly reported failure (ros-navigation/navigation2 issue #4938, picked by recorded seed). **It did not reproduce:** the stock configuration passed 5 of 5 runs at aisle widths of 1.1 m, 0.8 m and 0.7 m, so no search was run on it.
+
+To re-check every number in the race table from the committed evidence:
+
+```bash
+python3 -m experiment.verify experiment/work/race/agent-1/cand-1-site
+python3 -m experiment.verify experiment/work/baseline
+```
+
+`verify.py` exits 0 when every recomputed value matches the recorded `result.json`. The frozen referee's SHA-256 table is in `docs/EXPERIMENT.md` section 8; `sha256sum` on the five listed files must reproduce it.
 
 ## 1. The problem
 
@@ -27,9 +55,11 @@ The comparison we use for the idea is a debugger such as gdb, which runs on a fa
 - **Planned design, not built:** the parts that depend on the navigation stack (configuration format, error codes, log messages, how to start it in a simulator) are kept in one replaceable part, so that other stacks such as Autoware or a company's own stack could be added later. Nothing for other stacks is planned for the hackathon.
 - **Privacy, not solved:** navfail would call Meta's models through an online service, so log extracts or code would leave the user's company. Meta's Llama models can be downloaded and run locally, which might address this; not designed yet.
 
-## 4. How people would use it (planned)
+## 4. How people would use it (planned product flow — not built)
 
-**Once:** install navfail (a Docker image with ROS 2, Nav2 and Gazebo, or a Python package), point it at the robot's configuration, maps and launch files, choose which failure types it should handle, and provide the Meta model key in an environment variable.
+This section describes the product this experiment points at. That product does not exist: there is no installer and no `navfail` command. What exists is the experiment above, run from this repository on prepared incident folders. The steps below are the intended flow, and the "Status today" column separates what the hackathon experiment demonstrated from what remains unbuilt.
+
+**Once (planned):** install navfail (a Docker image with ROS 2, Nav2 and Gazebo, or a Python package), point it at the robot's configuration, maps and launch files, choose which failure types it should handle, and provide the Meta model key in an environment variable.
 
 **When a failure happens:**
 
@@ -38,14 +68,14 @@ The comparison we use for the idea is a debugger such as gdb, which runs on a fa
 | 1 | The robot fails at a site | customer | simulated by `reproduce/` |
 | 2 | Someone reports it: robot, time, place, what was seen | customer or support | written by us for each incident (`operator_note.md`) |
 | 3 | The engineer collects the recording, logs, configuration and map (section 7) | engineer | written by `reproduce/` |
-| 4 | `navfail investigate <incident folder>` | engineer | not built |
-| 5 | **Read:** a timeline from logs and recording | navfail | not built |
+| 4 | `navfail investigate <incident folder>` | engineer | **not built as a command**; the hackathon experiment runs the same loop from driver scripts in `experiment/work/` |
+| 5 | **Read:** a timeline from logs and recording | navfail | built for the experiment (`experiment/timeline.py`, `experiment/agent_arm.py`) |
 | 6 | **Sort:** match the symptom to a supported failure type, or say it is not supported | navfail | not built |
-| 7 | **Reproduce:** rebuild the scene in simulation and run it several times | navfail | not built |
-| 8 | **Narrow down:** find the setting or code path that changes the outcome | navfail | not built |
-| 9 | **Point:** the configuration line or source line, with the evidence | navfail | not built |
-| 10 | **Check by rerun:** the changed setup against the original and against itself, with counts | navfail | not built |
-| 11 | **Report:** what went wrong, where, the evidence, the counts, how to replay it | navfail | not built |
+| 7 | **Reproduce:** rebuild the scene in simulation and run it several times | navfail | built (`reproduce/`, `experiment/simulator.py`) |
+| 8 | **Narrow down:** find the setting or code path that changes the outcome | navfail | partly: the agent proposes changes inside a fixed six-setting allowlist; no code-path search |
+| 9 | **Point:** the configuration line or source line, with the evidence | navfail | partly: it names the setting and records its reason; it does not point at source lines |
+| 10 | **Check by rerun:** the changed setup against the original and against itself, with counts | navfail | built for the experiment's proof rule (`experiment/search.py`, `experiment/scoring.py`) |
+| 11 | **Report:** what went wrong, where, the evidence, the counts, how to replay it | navfail | built as `docs/REPORT.md` with the committed run evidence; no automatic per-incident report |
 | 12 | The engineer decides and changes their own repository | engineer | — |
 
 For the hackathon we aim at steps 4 to 11 for incident A only.
@@ -172,6 +202,7 @@ How navfail would work inside; what counts as solved (not decided yet); the caus
 
 - **Hackathon:** Meta Global AI Developer Hackathon, 26 October (kickoff 12:00 US Eastern, 17:00 German time) to 4 November 2026.
 - **Prepared before the hackathon:** the development environment (ROS 2, Nav2 and Gazebo under WSL2), learning the stack, the project idea, and reading about existing tools (13 to 25 October). Kept in a private repository; no code from it is copied here.
-- **Built during the hackathon:** the collection of the 50 entries (26 October, evening, after kickoff), the analysis of categories and gaps, this page, `docs/RESEARCH.md`, the reproduction tooling in `reproduce/` and the two incidents in `incidents/` (27 and 28 October).
-- **How it was built:** the work was done under the author's direction. The author chose the problem, the incidents, the scope and the design, and read the results. Separate AI review passes checked the numbers against the run files and the wording against the evidence; those reviews are not archived here. navfail itself will use only Meta's models.
+- **Built during the hackathon:** the collection of the 50 entries (26 October, evening, after kickoff), the analysis of categories and gaps, this page, `docs/RESEARCH.md`, the reproduction tooling in `reproduce/` and the two incidents in `incidents/` (27 and 28 October). Then, still inside 27 October to 4 November: the scoring referee, both search arms, the race and its evidence in `experiment/`, the synthetic corridor incident, the warehouse follow-up incident, and `docs/REPORT.md`.
+- **How it was built:** the work was done under the author's direction. The author chose the problem, the incidents, the scope and the design, and read the results. Separate AI review passes checked the numbers against the run files and the wording against the evidence; those reviews are not archived here.
+- **Which tool built which part:** the experiment code in `experiment/` — the frozen referee, the agent and random arms, the search loop, the simulator bridge, the bag-timeline extraction — and the run drivers in `experiment/work/` were built with Muse Code (Meta). The investigating agent's model is Muse Wonder 1.0, called through the Meta Model API at maximum reasoning effort; it proposes configuration changes and gives reasons, and it never scores its own proposals. navfail uses only Meta's models for the agent itself.
 - **Licence:** Apache-2.0 (`LICENSE`); the files derived from Nav2 are listed in `NOTICE`.
