@@ -59,7 +59,7 @@ The test failure is `incidents/C-corridor`: a synthetic corridor with one plante
 | navfail agent (Muse Wonder) | 8, 8, 8, 8, 8 | 8 |
 | Random search | 18, 9, 8, 28, 9 | 9 |
 
-The agent proved its first proposal in every search, at the minimum possible cost. The verdict recorded in `docs/REPORT.md` is "fewer" for the agent. The caveats are in section 8 and belong with this table.
+The agent proved its first proposal in every search, at the minimum possible cost. The proposals varied: in three searches the agent changed only `CostCritic.cost_weight` to 3.81; in two it also changed `inflation_layer.cost_scaling_factor` to 10.0 and `inflation_layer.inflation_radius` to 0.4 (`experiment/work/race/agent-*/search.json`). All five were proven in 8 runs. The verdict recorded in `docs/REPORT.md` is "fewer" for the agent. The caveats are in section 8 and belong with this table.
 
 ## 6. Check it yourself
 
@@ -80,7 +80,7 @@ bash reproduce/reproduce.sh incidents/C-corridor          # one run, headless
 bash reproduce/reproduce.sh incidents/C-corridor --gui    # with Gazebo and RViz windows
 ```
 
-The race itself: `experiment/work/race_driver.py` (needs `MODEL_API_KEY` for the agent arm; up to about 2.5 minutes per simulator run).
+The race itself: `experiment/work/race_driver.py` (needs `MODEL_API_KEY` for the agent arm; up to about 2.5 minutes per simulator run). It skips every search already saved under `experiment/work/race/`, and all ten are committed, so to rerun the race move that folder aside first; the full race is ten searches and takes several hours. During a search the simulator runs without a window; use `reproduce.sh --gui` to watch a single run.
 
 ## 7. Using navfail on a customer project
 
