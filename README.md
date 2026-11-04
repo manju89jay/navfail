@@ -70,7 +70,7 @@ python3 -m experiment.verify experiment/work/race/agent-1/cand-1-site   # exits 
 python3 -m experiment.verify experiment/work/baseline
 sha256sum experiment/scoring.py experiment/verify.py experiment/allowlist.py \
   experiment/tests/test_scoring.py experiment/tests/test_verify.py      # compare with docs/EXPERIMENT.md section 8
-python3 -m pytest experiment/tests -q                                    # 56 passed
+python3 -m pytest experiment/tests -q                                    # 56 passed with ROS 2 sourced; without it 55 passed, 1 skipped (test_timeline needs rosbag2_py)
 ```
 
 With ROS 2 Jazzy, Nav2 and Gazebo Harmonic installed (Ubuntu 24.04):
