@@ -1,6 +1,11 @@
 # navfail: to-do list (after the first version works)
 
-Written 27 October 2026. Nothing here is planned yet; items are picked from it once incident A works end to end.
+Written 27 October 2026. Not scheduled: the hackathon target is incident A (README section 4); items are picked from here after that works.
+
+## Open checks that decide whether the plan works (before the agent is built)
+
+- Whether any change removes incident A's stop in our simulation. If none does, there is nothing for navfail to confirm on incident A.
+- Whether Meta's models can be reached and are fast and good enough for this task.
 
 ## Site
 
@@ -22,8 +27,8 @@ Written 27 October 2026. Nothing here is planned yet; items are picked from it o
 
 ## Incidents
 
-- Incident A: contrast runs (details kept privately with the incident's answer).
-- Incident B: contrast runs (details kept privately with the incident's answer).
+- Incident A: contrast runs (the layout in `incident.json` already shows where to look).
+- Incident B: decide whether to keep it; it shares the area of its source report but not its symptom (README section 5). Replace it with an incident closer to a real failure, or drop it.
 
 ## Reproduction runner (from the 27 October reviews, "can wait")
 
@@ -37,7 +42,6 @@ Written 27 October 2026. Nothing here is planned yet; items are picked from it o
 - `is_leftover` matches "ros2 launch", "ros2 run" and "gz sim" anywhere in a command line, so an unrelated command can cause a false refusal.
 - `dpkg-query`, `gz sim --version` and `pgrep` are called without a time limit.
 - The bag stores no message definition for the navigation action's status and feedback topics.
-- A root `README.md` for the first public commit (the problem statement).
 - Six bags of about 5 to 15 MB each go into git history as plain binaries; consider Git LFS later.
 - `parse_pgm` loops forever on a truncated header.
 - Same-second stamp collision with `--repeat`; `--repeat 0`; missing incident folder gives a traceback.

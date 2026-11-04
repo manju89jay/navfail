@@ -1,0 +1,35 @@
+[WARN] [ros2bag]: Positional "topics" argument deprecated. Please use optional "--topics" argument instead.
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1793228123.710081063] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1793228123.710102840] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1793228123.714698793] [rosbag2_recorder]: Starting recording to 'bag'
+[INFO] [1793228123.719983982] [rosbag2_recorder]: Listening for topics...
+[INFO] [1793228123.720517385] [rosbag2_recorder]: Recording...
+[INFO] [1793228123.720036072] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1793228123.721345916] [rosbag2_recorder]: use_sim_time set, waiting for /clock before starting recording...
+[INFO] [1793228124.303615901] [rosbag2_recorder]: Sim time /clock found, starting recording.
+[INFO] [1793228124.306797010] [rosbag2_recorder]: Subscribed to topic '/cmd_vel'
+[INFO] [1793228124.309366429] [rosbag2_recorder]: Subscribed to topic '/odom'
+[INFO] [1793228124.314419461] [rosbag2_recorder]: Subscribed to topic '/rosout'
+[INFO] [1793228124.318289830] [rosbag2_recorder]: Subscribed to topic '/scan'
+[INFO] [1793228124.321941124] [rosbag2_recorder]: Subscribed to topic '/tf'
+[INFO] [1793228124.323825447] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1793228124.326396405] [rosbag2_recorder]: Subscribed to topic '/amcl_pose'
+[INFO] [1793228124.329875231] [rosbag2_recorder]: Subscribed to topic '/diagnostics'
+[INFO] [1793228124.345767206] [rosbag2_recorder]: Subscribed to topic '/particle_cloud'
+[INFO] [1793228124.348461851] [rosbag2_recorder]: Subscribed to topic '/cmd_vel_smoothed'
+[INFO] [1793228124.350823358] [rosbag2_recorder]: Subscribed to topic '/global_costmap/costmap'
+[INFO] [1793228124.354285518] [rosbag2_recorder]: Subscribed to topic '/plan'
+[INFO] [1793228124.358140164] [rosbag2_recorder]: Subscribed to topic '/cmd_vel_nav'
+[INFO] [1793228124.374761648] [rosbag2_recorder]: Subscribed to topic '/map'
+[WARN] [1793228124.387798763] [rosbag2_cpp]: Message definition for topic '/navigate_to_pose/_action/feedback' with type 'nav2_msgs/action/NavigateToPose_FeedbackMessage' not found. Message definition will be left empty in bag.
+[INFO] [1793228124.390762566] [rosbag2_recorder]: Subscribed to topic '/navigate_to_pose/_action/feedback'
+[WARN] [1793228124.392575839] [rosbag2_cpp]: Message definition for topic '/navigate_to_pose/_action/status' with type 'action_msgs/msg/GoalStatusArray' not found. Message definition will be left empty in bag.
+[INFO] [1793228124.395671631] [rosbag2_recorder]: Subscribed to topic '/navigate_to_pose/_action/status'
+[INFO] [1793228124.503503842] [rosbag2_recorder]: Subscribed to topic '/behavior_tree_log'
+[INFO] [1793228124.507079907] [rosbag2_recorder]: Subscribed to topic '/local_costmap/costmap'
+[INFO] [1793228124.507431936] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1793228124.507605778] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1793228244.538267225] [rosbag2_recorder]: Pausing recording.
+[INFO] [1793228244.538646217] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1793228244.560794000] [rosbag2_recorder]: Recording stopped
+[INFO] [1793228244.567077211] [rosbag2_recorder]: Event publisher thread: Exited

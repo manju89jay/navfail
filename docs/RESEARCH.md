@@ -4,7 +4,7 @@ A summary of research done from 24 to 27 October 2026 for navfail, a debugger fo
 
 ## 1. How the failures were collected
 
-- **Nav2 issue tracker** (github.com/ros-navigation/navigation2): 22 searches through GitHub's search interface (for example "stuck", "oscillate", "collision", "inflation", "recovery", "no valid path", "failed to make progress", and the bug label) returned 1,323 different issues. A screen by title kept 176; reading those and their discussions gave 40 entries (IDs starting with N).
+- **Nav2 issue tracker** (github.com/ros-navigation/navigation2): 22 searches through GitHub's search interface (for example "stuck", "oscillate", "collision", "inflation", "recovery", "no valid path", "failed to make progress", and the bug label) returned 1,323 different issues. A screen by title kept 176; reading those and their discussions gave 40 entries (IDs starting with N), of which 28 remain in the table after duplicates and drops.
 - **Papers and documentation:** papers on Nav2 and robot navigation testing, and the official Nav2 Jazzy documentation (IDs starting with P).
 - **Question-and-answer sites and robot trackers:** Robotics Stack Exchange (questions with an accepted answer, including posts moved there from ROS Answers) and the TurtleBot 3 and TurtleBot 4 issue trackers (IDs starting with Q).
 - **The ID prefix names the search batch that found an entry, not its source type:** P05 is a Nav2 tracker issue found through a paper; Q12 is a Stack Exchange post backed by a Nav2 tracker issue.
@@ -16,12 +16,12 @@ What each column of the table means:
 
 - **Category:** the eight categories of section 3.
 - **Seen as:** the nearest of nine outcome classes: collision, stall (the robot stops), oscillation (back and forth), abort (Nav2 gives up), no path, path through obstacle (the plan crosses an obstacle), deadline (takes too long), recovery loop, localisation loss. A `*` marks rows where the report does not say this outright and the class is inferred or the nearest fit.
-- **Credibility:** a = a Nav2 maintainer's comment, a bug label, or a linked fix; b = a paper accepted at IROS 2020 (one paper, entries P06 and P07; the date is that of its arXiv version 2); c = accepted answer on Stack Exchange; d = official Nav2 documentation. Counts: a 31, b 2, c 11, d 6.
+- **Source type** (it rates where a report comes from, not whether its explanation is correct): a = a maintainer's comment (Nav2, or TurtleBot for Q01), a bug label, or a linked fix; b = a paper accepted at IROS 2020 (one paper, entries P06 and P07; the date is that of its arXiv version 2); c = accepted answer on Stack Exchange; d = official Nav2 documentation. Counts: a 31, b 2, c 11, d 6.
 - **Fixed in 1.3.13:** checked against the history of Nav2 1.3.13, the version navfail runs on, on 26 October 2026. yes = a fix commit was found in that history (19); no = a fix was merged upstream and was not found in that history (7); open = no fix merged (2); n/a = no Nav2 code fix: configuration advice, behaviour by design, no fix stated, an accepted limitation, or fixed outside Nav2 (22). A `†` marks the least certain: N03's fix only adds warnings, so the failure can still be configured; N17 had a second change that was not identified; for N23 and N36 a different change in the release was not ruled out.
 
 ## 2. The 50 failures, by category
 
-| ID | Date | Category | What was reported | Seen as | Credibility | Fixed in 1.3.13 | Source |
+| ID | Date | Category | What was reported | Seen as | Source type | Fixed in 1.3.13 | Source |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | N03 | 2023-05-19 | C1 | Smac Hybrid-A* path collides with the footprint when the inflation radius is too small | path through obstacle | a | yes† | [Nav2 tracker](https://github.com/ros-navigation/navigation2/issues/3580) |
 | N04 | 2022-08-04 | C1 | Planner ignores keepout-filter zones for a rectangular robot (filter not inflated) | path through obstacle | a | n/a | [Nav2 tracker](https://github.com/ros-navigation/navigation2/issues/3102) |
@@ -119,4 +119,25 @@ Who covers each step of an investigation, for Nav2 failures:
 | Package the failure for replay | partial: RoboVAST archives whole campaigns, Scenario Execution saves a scenario file |
 | Point to the configuration or source line (a step navfail adds) | our reading: none of the listed tools is described as doing this |
 
-**The gap is per step, not per failure type:** shrinking, explaining, comparing and packaging are not fully covered for any of the eight categories. How much detection covers differs by category, because what goes wrong is visible in different places: a collision or a stop is seen by every tool, a plan through an obstacle only by reading the plan. Where the existing tools are stronger, navfail does not compete: scale (RoboVAST reports 100,000 runs on 1,920 CPUs), many environments, sensor-noise variation and cluster infrastructure. navfail runs on one laptop, with one robot and one simulated world.
+**The gap is per step, not per failure type:** shrinking, explaining, comparing and packaging are not fully covered for any of the eight categories. How much detection covers differs by category, because what goes wrong is visible in different places: a collision or a stop is seen by every tool, a plan through an obstacle only by reading the plan. Where the existing tools are stronger, navfail does not compete: scale (RoboVAST reports over 100,000 simulated runs), many environments, sensor-noise variation and cluster infrastructure. navfail runs on one laptop, with one robot and one simulated world.
+
+## 5. Limits of this research
+
+- **A search, not a census.** The reports were found with keyword searches in English, on the sources named in section 1, and screened by title before reading. Failures that are reported differently, elsewhere, or not at all are missing.
+- **The counts reflect what we searched for.** The number of reports per category says how many our searches found, not how often each failure happens on real robots.
+- **Our judgement.** The categories, the "Seen as" class and the source-type letters were assigned by us; another reader could sort some entries differently.
+- **AI-assisted.** The searches, reading and summaries were done with an AI coding assistant and checked against the sources by separate AI review passes; the links were checked to open, the contents were not each re-read by a person.
+- **Tools were read, not run.** Section 4 is based on the tools' papers and documentation.
+- **Not backed by files here.** The search counts in section 1 (22 searches, 1,323 issues, 176 kept, 70 entries) and the release-history checks behind "Fixed in 1.3.13" come from private working notes; this repository has no file that backs them.
+
+## 6. Sources for section 4
+
+| Tool | Source |
+| --- | --- |
+| RoboVAST | paper arXiv 2607.06248 (https://arxiv.org/abs/2607.06248); code https://github.com/cps-test-lab/robovast |
+| Scenario Execution for Robotics | paper arXiv 2409.07080 (https://arxiv.org/abs/2409.07080); code https://github.com/cps-test-lab/scenario-execution |
+| Nav2 system tests | https://github.com/ros-navigation/navigation2/tree/jazzy/nav2_system_tests |
+| DDEnv | paper https://merielvonstein.com/files/publications/ICRA2021-DDEnv.pdf ; code https://github.com/MissMeriel/DDEnv |
+| Valle et al. | paper arXiv 2607.25695 (https://arxiv.org/abs/2607.25695); code https://github.com/pablovalle/DeltaDebugging4CPSs |
+| Zeller's ddmin | Zeller and Hildebrandt, IEEE TSE 2002 (https://www.st.cs.uni-saarland.de/papers/tse2002/tse2002.pdf); https://www.debuggingbook.org/html/DeltaDebugger.html |
+| Robot fuzzers, LLM scenario generators, industry | read at summary level from their papers and product pages; not listed one by one |

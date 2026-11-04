@@ -1,94 +1,105 @@
 # navfail
 
-This page says what problem navfail addresses, what it aims for and how people will use it. It does not say how navfail works inside, and it does not yet say what "solved" means (decided later). The research behind it is summarised in `docs/RESEARCH.md`. Terms are explained in section 12.
+**Status, 28 October 2026:** this repository holds a problem statement, a summary of research, and two navigation failures that can be reproduced in simulation with one command. **The investigating agent does not exist yet.** Everything below about what navfail will do is a plan; section 6 lists the known limits.
 
-## 1. The problem in one paragraph
+The research behind this page is summarised in `docs/RESEARCH.md`. Terms are explained in section 13.
 
-A mobile robot fails during a mission: it stops, rocks back and forth, never arrives, or touches something. An operator or customer reports what they saw. A robotics engineer then has to find out why, without being told the cause. Today that is manual work: collect the robot's logs and recordings, reproduce the failure, check that it is not a one-off, strip the scene down to what matters, form a hypothesis, try a configuration change, and rerun enough times to trust the answer. Failures are often intermittent, so every step needs repeated runs. The kinds of failure are not specific to one navigation stack; their details (parameter names, error codes, log messages) are.
+## 1. The problem
 
-## 2. End goal
+A mobile robot fails during a mission: it stops, rocks back and forth, never arrives, or touches something. An operator or customer reports what they saw. A robotics engineer then has to find out why, without being told the cause. Today that is manual work: collect the robot's logs and recordings, reproduce the failure, check that it is not a one-off, strip the scene down to what matters, form a hypothesis, try a change, and rerun enough times to trust the answer. Failures are often intermittent, so every step needs repeated runs.
 
-**navfail is a debugger for robot navigation.** It is an agent: a program that uses Meta's language models to decide what to look at and what to run next. Like gdb or a sanitizer for a program, it is run with one command on what was captured when the failure happened, and it reports the error and points to where it comes from:
+## 2. The goal
 
-- in the user's own files: the configuration key and line, the map, the behaviour tree;
-- or in the navigation stack's source code, pinned to the installed version.
+An unproven aim: no part of it exists yet, no pointing, no rerun check and no call to a Meta model. Reading logs with a language model to explain a failure is already done by other tools (section 10); the part we test first is narrower, in `docs/EXPERIMENT.md`.
 
-Unlike a debugger, navfail cannot read the cause directly; it can only suspect a place from the evidence. What it can do instead is test that suspicion: reproduce the failure in simulation, apply a change at the place it points to, rerun, and report whether the failure went away, with counts. A pointer is reported as confirmed or not confirmed by those reruns.
+navfail aims to be an agent, a program that uses Meta's language models to decide what to look at and what to run next, that takes what was captured when a navigation failure happened and:
 
-Open decision: our rule so far has been that model output is labelled "hypotheses" and never claims a root cause. How a pointer confirmed by reruns is worded is decided in the agent's specification (to be written).
+- reports what went wrong;
+- points to where it suspects the cause: a configuration key and line in the user's files, or a line in the navigation stack's source code for the installed version;
+- tests that suspicion by reproducing the failure in simulation, applying a change at that place, rerunning, and reporting with counts whether the failure went away.
+
+The comparison we use for the idea is a debugger such as gdb, which runs on a failing program and points to a file and line. The comparison has a limit: gdb observes where a program failed, while navfail can only suspect a place from evidence. The reruns are what would turn a suspicion into something an engineer can check. Whether that works is what this project has to show.
 
 ## 3. Scope
 
-- **The problem is generic.** Any mobile robot navigation stack has these failures.
-- **Reading the incident and spotting the symptom work for any stack that records standard ROS 2 data**: position, velocity commands, sensor data, logs, diagnostics (section 6).
-- **Everything that depends on the stack sits in one replaceable part, a stack adapter**: configuration format, error codes, log messages, source layout, and how to start the stack in a simulator.
-- **The hackathon ships one adapter: ROS 2 Jazzy + Nav2 + Gazebo.** Nav2 is the open-source navigation stack of ROS 2.
-- **Later adapters, not built now:** Autoware (ROS 2, for vehicles; it mainly uses its own simulators rather than Gazebo) and a company's private stack (the company writes a small adapter: how to launch, where the configuration is, which topics mean what). Pointing into source code needs access to that code.
-- **Privacy for private stacks:** navfail calls Meta's models through an API, so log extracts or code would leave the company. Meta's Llama models are open weights and could run on the company's own machines. Design decision for later.
+- **Built and tested only on ROS 2 Jazzy, Nav2 1.3.13 and Gazebo**, with a TurtleBot 3 in simulation.
+- We expect the same kinds of failure on other navigation stacks, but we have only collected and checked Nav2 reports.
+- **Planned design, not built:** the parts that depend on the navigation stack (configuration format, error codes, log messages, how to start it in a simulator) are kept in one replaceable part, so that other stacks such as Autoware or a company's own stack could be added later. Nothing for other stacks is planned for the hackathon.
+- **Privacy, not solved:** navfail would call Meta's models through an online service, so log extracts or code would leave the user's company. Meta's Llama models can be downloaded and run locally, which might address this; not designed yet.
 
-The statements about Autoware and private stacks in this section are general knowledge, not taken from our research.
+## 4. How people would use it (planned)
 
-## 4. How people will use it
-
-**Once, at setup:**
-1. Install navfail: one Docker image with ROS 2, Nav2 and Gazebo, or a Python package on a machine that has them.
-2. Point it at the robot's own repository: Nav2 configuration, maps, launch files, behaviour tree, and the Gazebo world and robot model if they have them.
-3. Choose which failure types navfail handles (section 7), and provide the Meta model API key from an environment variable.
+**Once:** install navfail (a Docker image with ROS 2, Nav2 and Gazebo, or a Python package), point it at the robot's configuration, maps and launch files, choose which failure types it should handle, and provide the Meta model key in an environment variable.
 
 **When a failure happens:**
 
-| # | Step | Who | Hackathon version | Full product |
-| --- | --- | --- | --- | --- |
-| 1 | The robot fails at a site ("Robot 7 stood at dock door 3 for a minute, 14:02") | customer | simulated by `reproduce/` | real robot |
-| 2 | Someone reports it: robot, time, place, what was seen (the operator note) | customer or support | written by hand from the recorded runs | ticket or fleet tool |
-| 3 | The engineer collects the incident folder from the robot (section 6) | engineer | recording, logs and configuration written by `reproduce/` | manual; a later `navfail collect` |
-| 4 | `navfail investigate <incident folder>` | engineer | yes | yes |
-| 5 | **Read:** a timeline from logs and recording (goal sent, planner failures, recoveries, where the robot stood and for how long) | navfail | yes | yes |
-| 6 | **Sort:** match the symptom to a supported failure type; if none matches, say so and stop | navfail | yes | yes |
-| 7 | **Reproduce:** rebuild the scene in simulation and run it N times: "reproduced k of N" or "not reproduced" | navfail | the site is already known (our simulation) | site rebuilt from the user's world or map |
-| 8 | **Narrow down:** remove what does not matter, find the setting or code path that changes the outcome | navfail | yes | yes |
-| 9 | **Point:** the configuration line or source line, with the evidence cited | navfail | yes | yes |
-| 10 | **Check by rerun:** apply the change, rerun it next to an unchanged comparison run, report counts | navfail | yes | yes |
-| 11 | **Report:** error, location, evidence, suggested change, replay package | navfail | yes | yes |
-| 12 | The engineer reviews it, changes their repository, and keeps the incident as a regression test (`navfail replay` in CI) | engineer | replay only | yes |
+| # | Step | Who | Status today |
+| --- | --- | --- | --- |
+| 1 | The robot fails at a site | customer | simulated by `reproduce/` |
+| 2 | Someone reports it: robot, time, place, what was seen | customer or support | written by us for each incident (`operator_note.md`) |
+| 3 | The engineer collects the recording, logs, configuration and map (section 7) | engineer | written by `reproduce/` |
+| 4 | `navfail investigate <incident folder>` | engineer | not built |
+| 5 | **Read:** a timeline from logs and recording | navfail | not built |
+| 6 | **Sort:** match the symptom to a supported failure type, or say it is not supported | navfail | not built |
+| 7 | **Reproduce:** rebuild the scene in simulation and run it several times | navfail | not built |
+| 8 | **Narrow down:** find the setting or code path that changes the outcome | navfail | not built |
+| 9 | **Point:** the configuration line or source line, with the evidence | navfail | not built |
+| 10 | **Check by rerun:** the changed setup against the original and against itself, with counts | navfail | not built |
+| 11 | **Report:** what went wrong, where, the evidence, the counts, how to replay it | navfail | not built |
+| 12 | The engineer decides and changes their own repository | engineer | — |
 
-Steps 5 to 11 are what the user sees navfail do; how it does them is for the agent's specification. The hard part for a real site is step 7: walls and fixed obstacles can be rebuilt from the map, but people and objects that are not on the map appear only in the sensor recording.
+For the hackathon we aim at steps 4 to 11 for incident A only.
 
-## 5. The incidents navfail starts from
+## 5. The two incidents
 
-Two incidents, each modelled on a real, dated, public report (listed in navfail `docs/REFERENCES.md`). Both are reproduced in simulation by one command, `bash reproduce/reproduce.sh incidents/<name>`. Only what an operator sees is written here. navfail is built for incident A first; incident B is the second failure type, added once A works.
+Both are reproduced in simulation by one command, `bash reproduce/reproduce.sh incidents/<name>`, and both are modelled on public reports (`docs/REFERENCES.md`). We designed and built both ourselves, and both are weak stand-ins for their reports, for the reasons given below. Their layouts can be read in each `incident.json`, so neither cause is hidden from a reader of this repository. **We have not verified that either reproduction has the same cause as its report.**
 
-### Incident A: the robot gets stuck in front of a doorway
+### Incident A: the robot stalls near a very narrow doorway
 
-- Modelled on a 2023 field report: a differential-drive robot on Nav2 stops at the threshold of a doorway at about half of all crossings and rotates back and forth; sometimes it frees itself after about 30 seconds, often it needs a joystick nudge. The reporter says it is not entirely solved.
-- In navfail: a wall with a doorway on the TurtleBot 3 sandbox, Nav2's stock configuration. In 3 of 3 runs the robot stayed in one spot in front of the doorway for 47.2 to 65.4 s; 2 runs then got through, 1 failed with Nav2's "no valid path" error (`incidents/A-doorway/operator_note.md`). The report says about half of crossings; our layout produced it every time.
-- Why it comes first: the robot's visible behaviour, standing in one spot, is easy to detect in the recording, and it varies from run to run the way field failures do.
+- The report (2023): a robot on Nav2 stops at a doorway at about half of all crossings and rotates back and forth; sometimes it frees itself after about 30 seconds, often it needs a push. The reporter says it is not entirely solved.
+- Our reproduction: a wall with a doorway 0.5 m wide in Nav2's TurtleBot 3 sandbox, for a robot 0.44 m wide, with Nav2's stock configuration. In 3 of 3 runs the robot moved about 0.15 m from its start and then stayed within 0.10 m of one spot, its front about 0.2 m from the wall, for 47.2 to 65.4 s, while Nav2's controller logged that it was failing to make progress (all 3 runs) and that it could not compute a path (2 runs). 2 runs then got through, 1 failed with Nav2's "no valid path" error (`incidents/A-doorway/operator_note.md`).
+- **How it differs from the report:** it happened in 3 of 3 runs, not about half of crossings, and lasted longer. In one earlier trial run with a 0.6 m doorway (not kept) the robot passed without stopping, so in our layout the stall appears only when the gap is a few centimetres wider than the robot. A reader could fairly call that expected behaviour rather than a fault.
+- **Not tested yet:** whether any change removes the stall. If none does, navfail has nothing to confirm for this incident.
 
-### Incident B: the mission fails with "no valid path" after the robot manoeuvres on the spot
+### Incident B: a goal inside an obstacle, and a slow, vague failure
 
-- Modelled on a 2025 public report.
-- In navfail: in 3 of 3 runs the robot never sets off; it turns, pauses, backs up and turns again, and the mission fails after 17.5 to 19.0 s with Nav2's "no valid path" error, code 208 (`incidents/B-drop-off/operator_note.md`).
+- The report (2025): a Nav2 issue in which a planner works towards a goal that lies inside an obstacle when its goal tolerance is above zero, wasting time.
+- Our reproduction: the goal is placed inside an obstacle that is drawn on the map, with Nav2's Smac 2D planner configured. In 3 of 3 runs the robot never sets off; Nav2 turns, pauses, backs up and turns again, and the mission fails after 17.5 to 19.0 s with "no valid path", code 208 (`incidents/B-drop-off/operator_note.md`).
+- **How it differs from the report:** finding no path is the correct answer for a goal inside an obstacle; the planner here fails quickly instead of working towards the goal. What remains is about 18 s of recovery manoeuvres and an error that says "no valid path" rather than that the goal is occupied. B shares the area of the report, not its symptom, and whether it is a failure at all is debatable. It may be replaced (`docs/TODO.md`).
 
-## 6. The incident folder: what navfail reads
+## 6. Known limits
 
-The incident folder is what the person reporting a failure hands over: a standard set of files, in formats widely used with ROS 2 robots. In navfail's repository, `incidents/<name>/` holds more than that: `incident.json` (the simulated site) and each run's `groundtruth.csv` describe the simulation and are not something a reporter would have.
+1. **Two incidents we built ourselves, whose answers we know, are a demonstration, not an evaluation.** Results on them say little about failures nobody has prepared.
+2. **The site is a toy:** a small walled arena with pillars and a basic robot. Real warehouses, robots and sensors are far more complex.
+3. **Rebuilding the scene works only because we drew the walls on the map.** At a real site, people, pallets and anything not on the map appear only in the sensor recording; navfail has no answer for that yet.
+4. **A model may answer from memory instead of investigating.** Both source reports are public, and common advice for such failures is in Nav2's tuning guide. Pointing at the right setting can therefore come from recall. A rerun check could measure more than recall; it is not built.
+5. **Our incidents are not intermittent.** Both behave the same way in 3 of 3 runs, so the idea of judging intermittent failures by repeated runs is untested on a truly intermittent case.
+6. **Meta model access and quality are not tested yet** for this task.
+7. **Simulation only.** Nothing here says anything about real robots.
+8. **The research is a search, not a census, and partly unbacked here.** The 50 entries are 28 Nav2 tracker issues, 13 posts from question-and-answer sites and robot trackers, and 9 from documentation and one paper. The tracker issues were found by keyword search and screened by title. The counts per category reflect what we searched for, not how often failures happen. The search counts and the release-history checks come from private notes; no file in this repository backs them (`docs/RESEARCH.md` section 5).
+9. **Much of the work is AI-drafted** (section 14), including the research entries, which were not each re-read by a person.
+10. **One person;** the hackathon build is about one week, after preparation from 13 October.
 
-| Part | Format | In navfail's incidents today |
+## 7. What navfail would read: the incident folder
+
+What the person reporting a failure would hand over, in formats widely used with ROS 2 robots:
+
+| Part | Format | In this repository's incidents |
 | --- | --- | --- |
-| Recording: tf, odometry, velocity commands, lidar scan, localisation pose, plan, costmaps, behaviour-tree log, rosout, diagnostics, navigation action status | rosbag2 with MCAP files (MCAP is the default storage in ROS 2 Jazzy) | yes |
-| Text logs | the launch output; on a real robot `~/.ros/log/` | yes (`nav2.log`) |
-| Configuration | ROS parameter YAML, launch files, behaviour-tree XML | parameters yes; launch file and behaviour tree are Nav2's stock files and are not copied |
-| Map | `map.yaml` + `map.pgm` (map_server format) | yes |
-| Versions | installed package list; on a real robot also the git commit of the robot repository | packages yes |
-| Operator note | short text: robot, time, place, what was seen | yes, written by hand (`operator_note.md`) |
+| Recording: tf, odometry, velocity commands, lidar scan, localisation pose, plan, costmaps, behaviour-tree log, rosout, diagnostics, navigation action status | rosbag2 with MCAP files | yes |
+| Text logs | the launch output | yes (`nav2.log`) |
+| Configuration | ROS parameter YAML | yes; launch file and behaviour tree are Nav2's stock files and are not copied |
+| Map | `map.yaml` + `map.pgm` | yes |
+| Versions | installed packages | yes |
+| Operator note | robot, time, place, what was seen | yes, written by us |
 
-Which of these files the agent is given is decided in the agent's specification. The agent gets only what the person reporting the failure hands over; it may run inside that person's project or in production.
+`incidents/<name>/` also holds files a reporter would not have: `incident.json` and each run's world file describe the simulated site, and `groundtruth.csv` is the true position only a simulation knows. Which files the agent is given is decided in its specification, not written yet.
 
-## 7. Failure types
+## 8. Failure types
 
-We collected 50 real, dated, public reports of Nav2 navigation failures; they fall into eight categories (`docs/RESEARCH.md` sections 2 and 3):
+The 50 entries fall into eight categories (`docs/RESEARCH.md` sections 2 and 3); C8 rests on a single entry:
 
-| # | Category | Entries |
+| # | Category | Reports |
 | --- | --- | ---: |
 | C1 | Footprint, inflation and tight gaps | 12 |
 | C2 | Costmap not clearing or clearing wrongly | 8 |
@@ -99,67 +110,68 @@ We collected 50 real, dated, public reports of Nav2 navigation failures; they fa
 | C7 | Goal in or near an obstacle | 4 |
 | C8 | Localisation near obstacles | 1 |
 
-The user chooses which failure types navfail handles. navfail starts with one (Incident A) and adds types only after the first one works. The rest are on the to-do list.
+The plan is that the user chooses which failure types navfail handles; it would start with one (incident A) and add more only after that one works (`docs/TODO.md`).
 
-## 8. Why this is hard today
+## 9. Why this is hard
 
-- **Failures are intermittent.** Incident A's reporter saw it at about half of crossings. One run proves nothing; every claim needs several runs.
+- **Field failures are often intermittent.** Incident A's reporter saw it at about half of crossings, so one run proves nothing there. Our own two reproductions are not intermittent (section 6).
 - **Each run is slow.** One simulated mission with start and shutdown took 32 to 93 s in our final runs (`result.json`, field `wall_s`), and one machine runs one simulator at a time.
-- **A full investigation takes many runs.** Our estimate for a scene with five obstacles: 3 baseline runs, 3 to confirm the failure, 15 to 30 to shrink the scene, 20 for a final confirmation and 24 to compare two configurations, 65 to 80 runs in all. At our measured 32 to 93 s per run, that is about 0.6 to 2.1 hours of simulation for one failure.
-- **No existing tool covers the whole investigation** (section 9).
+- **A full investigation needs many runs.** Our estimate for a scene with five obstacles: 3 baseline runs, 3 to confirm the failure, 15 to 30 to shrink the scene, 20 for a final confirmation and 24 to compare two configurations, 65 to 80 runs in all, about 0.6 to 2.1 hours of simulation at the measured run times. This is an estimate, not a measurement.
 
-## 9. What existing tools cover, and what they miss
+## 10. What existing tools cover
 
-Tools checked (`docs/RESEARCH.md` section 4): RoboVAST and Scenario Execution (scenario test frameworks for ROS 2), Nav2's own system tests, DDEnv and the reducers of Valle and Zeller (research methods that shrink a failing test), robot fuzzers (random test generators), LLM scenario generators, and industry tools; the closest industry tool on ROS 2 is scenario_simulator_v2, for Autoware.
+Tools we looked at (`docs/RESEARCH.md` section 4): RoboVAST and Scenario Execution (scenario test frameworks for ROS 2), Nav2's own system tests, DDEnv and the reducers of Valle and Zeller (research methods that shrink a failing test), robot fuzzers, LLM scenario generators, and industry tools.
 
-| Step | Coverage today |
+| Step | What we found in the sources we read |
 | --- | --- |
-| Detect the failure | partial: collisions, aborts and timeouts are seen; a plan through an obstacle or a wrong costmap cell is not, because none of the listed tools is described as checking the plan or the costmap |
-| Confirm by repeated runs | covered by some tools, only for what they detect |
-| Shrink the scene to what matters | partial: one tool reduces obstacles, but on ROS 1 and without a licence; no tool is stated to shrink the time an obstacle appears, or a parameter file |
-| Explain the failure | not covered: no tool produces an explanation |
-| Compare two configurations with repeated runs and a control | partial: parameter variation exists, but no verdict from repeated runs and no control (the same configuration run against itself, to see how much results vary by chance) |
-| Package the failure for replay | partial |
-| Point to the configuration or source line | our reading: none of the listed tools is described as doing this |
+| Detect the failure | partly: collisions, aborts and timeouts are seen; checking the plan or the costmap is not described |
+| Confirm by repeated runs | some tools, only for what they detect |
+| Shrink the scene | partly: one tool removes obstacles, but on ROS 1 and without a licence |
+| Explain the failure | **already done by several tools** (below) |
+| Compare two configurations | partly: parameter variation exists, without a verdict from repeated runs and a control |
+| Package the failure for replay | partly |
+| Point to the configuration or source line | one commercial tool says it traces failures into the codebase (below) |
 
-The gap is per step, not per failure type: shrinking, explaining, comparing and packaging are not fully covered for any of the eight categories.
+**Tools that read robot logs with a language model and explain failures** (found on 28 October, after our first research missed them; read, not run):
 
-## 10. The environment of the hackathon version
+- **ROSA** (NASA JPL, 2024, open source): an agent to inspect, diagnose and operate ROS 1 and ROS 2 robots. https://arxiv.org/abs/2410.06472
+- **ROS Help Desk** (CSIRO, 2025): diagnoses ROS errors from logs and sensor data, with a code-review module; evaluated on a TurtleBot 3 in Gazebo with injected faults, the same robot and simulator as here. https://arxiv.org/abs/2507.07846
+- **Roboto Agents** (2026, commercial): reviews each new recording, tags failures, traces root causes into the codebase and drafts fixes; no evaluation published. https://discourse.openrobotics.org/t/roboto-agents-agentic-triage-root-cause-analysis-and-data-curation-for-rosbags-and-mcap/57438
+- **PyRoboReplay** (open source): says it does root-cause analysis and Nav2-specific diagnosis from recordings; self-described only. https://github.com/mullassery/pyroboreplay
+- **Bagel 2.0**, **mcp-ros2-logs**, **explainable_ros**: ask questions of recordings and logs in plain language.
 
-- ROS 2 Jazzy, Nav2 1.3.13, Gazebo Sim 8 (Harmonic), on Ubuntu 24.04 under WSL2 on one Windows laptop.
-- Robot: TurtleBot 3 Waffle, round, radius 0.22 m, 2D lidar.
-- Site: Nav2's TurtleBot 3 sandbox, a small walled arena with pillars, with walls and fixtures added per incident, drawn into the site map as well. A more realistic warehouse site is on the to-do list.
-- The true robot position comes from the simulator, independent of what the robot believes.
-- Hackathon rule: navfail uses only Meta's models.
+So explaining a failure from its logs is not new. What we did not find: starting from an incident, testing a suspected configuration change by rerunning it in simulation, and reporting the result with counts and a control. That is the question in `docs/EXPERIMENT.md`.
 
-## 11. Not in this document
+This is based on reading the tools' papers, documentation and announcements (listed here and in `docs/RESEARCH.md` section 6), not on running them; "not described" means we did not find it, not that it cannot be done. Where they are stronger (scale, many environments, cluster infrastructure), navfail does not compete.
 
-- How navfail works inside.
-- What counts as solved (decided later).
-- The cause of either incident.
+## 11. The environment
 
-## 12. Terms
+ROS 2 Jazzy, Nav2 1.3.13, Gazebo Sim 8 (Harmonic), Ubuntu 24.04 under WSL2 on one Windows laptop. Robot: TurtleBot 3 Waffle, round, radius 0.22 m, 2D lidar. Site: Nav2's TurtleBot 3 sandbox with walls and fixtures added per incident. Hackathon rule: navfail uses only Meta's models.
+
+## 12. Not in this page
+
+How navfail would work inside; what counts as solved (not decided yet); the cause of either incident.
+
+## 13. Terms
 
 | Term | Meaning |
 | --- | --- |
 | ROS 2 | Robot Operating System 2: the common open-source software framework for robots |
 | Navigation stack | the software that plans and drives a robot to a goal; Nav2 is ROS 2's |
 | Gazebo | the robot simulator used with ROS 2 |
-| gdb, sanitizer | tools that run a program and report where it fails, with file and line |
+| gdb | a tool that runs a program and reports where it fails, with file and line |
 | rosbag2, MCAP | ROS 2's recorder and its file format: every message on chosen topics, with timestamps |
 | tf, odometry, lidar, localisation pose | where the robot's parts are; how far its wheels say it moved; its laser distance sensor; where it believes it is on the map |
 | Costmap | Nav2's grid of where the robot may and may not go |
 | Behaviour tree | the decision logic Nav2 follows: plan, drive, and what to try when that fails |
 | Recovery | what Nav2 tries after a failure: turn on the spot, pause, back up |
 | "No valid path" (code 208) | Nav2's error when its planner finds no route to the goal |
-| Regression test, CI | a saved test rerun automatically on every change, to catch the failure coming back |
-| Open weights | a model whose files can be downloaded and run on one's own machines |
+| Control | the same configuration run against itself, to see how much results vary by chance |
 
-## 13. About this repository
+## 14. About this repository
 
-- **Hackathon:** Meta Global AI Developer Hackathon, 26 October to 4 November 2026.
-- **Prepared before the hackathon:** the development environment (ROS 2 Jazzy, Nav2 and Gazebo under WSL2), learning the stack, and the reading on existing tools (24 and 25 October). This preparation is kept in a private repository; no code from it is copied here.
-- **On the kickoff day, 26 October:** the collection of the 50 reported failures (summarised in `docs/RESEARCH.md`).
-- **Built during the hackathon, from 27 October:** this problem statement, the analysis of categories and gaps, `docs/RESEARCH.md`, the reproduction tooling in `reproduce/` and the two incidents in `incidents/`.
-- **Models:** navfail itself uses only Meta's models.
+- **Hackathon:** Meta Global AI Developer Hackathon, 26 October (kickoff 12:00 US Eastern, 17:00 German time) to 4 November 2026.
+- **Prepared before the hackathon:** the development environment (ROS 2, Nav2 and Gazebo under WSL2), learning the stack, the project idea, and reading about existing tools (13 to 25 October). Kept in a private repository; no code from it is copied here.
+- **Built during the hackathon:** the collection of the 50 entries (26 October, evening, after kickoff), the analysis of categories and gaps, this page, `docs/RESEARCH.md`, the reproduction tooling in `reproduce/` and the two incidents in `incidents/` (27 and 28 October).
+- **How it was built:** the work was done under the author's direction. The author chose the problem, the incidents, the scope and the design, and read the results. Separate AI review passes checked the numbers against the run files and the wording against the evidence; those reviews are not archived here. navfail itself will use only Meta's models.
 - **Licence:** Apache-2.0 (`LICENSE`); the files derived from Nav2 are listed in `NOTICE`.

@@ -1,6 +1,6 @@
 # reproduce: make a reported incident happen in simulation
 
-Written 27 October 2026, during the hackathon. This folder reproduces an incident end to end and records everything about it. It does not investigate or explain anything.
+Written 27 October 2026, during the hackathon. This folder reproduces an incident end to end and records what we could think of recording. It does not investigate or explain anything.
 
 ## Run it
 
@@ -21,7 +21,7 @@ If you change an incident's walls, redraw its site map first: `python3 reproduce
 | File | What | Would a reporter hand it over? |
 | --- | --- | --- |
 | `incident.json` | start, goal, walls of the simulated site, time budget, which deployed files to use | no: it builds the simulation |
-| `operator_note.md` | what the operator saw, in plain words, written by hand from the runs | yes |
+| `operator_note.md` | what the operator saw, in plain words, written by us from the runs (AI-drafted, see the top-level README) | yes |
 | `deployed/nav2_params.yaml` | the Nav2 configuration on the robot | yes |
 | `deployed/map.yaml`, `map.pgm` | the site map the robot localises and plans on | yes |
 | `runs/<stamp>/` | one folder per run (below) | partly (below) |
@@ -44,11 +44,11 @@ Simulation only, not something a reporter would have: `groundtruth.csv`, `world.
 
 ## Specification
 
-**Goal.** One command reproduces a reported incident in simulation, without knowing its cause, and leaves everything an engineer could ask for in one folder.
+**Goal.** One command reproduces an incident in simulation and leaves its recording, logs, configuration and map in one folder.
 
 **Not in scope.** Finding, explaining or fixing the cause. Deciding which outputs an investigating agent receives (that is the agent's specification).
 
-**Interface.** `bash reproduce/reproduce.sh <incident folder> [--gui] [--repeat N]`. One `RESULT` line per run. Exit codes: 0 clean; 2 a simulator was already running; 3 teardown left processes behind; 4 the runner failed or was stopped; 5 the host name or home folder was found in the run files. A series stops at the first non-zero run.
+**Interface.** `bash reproduce/reproduce.sh <incident folder> [--gui] [--repeat N]`. One `RESULT` line per run. Exit codes: 0 clean (a known gap: a run that ends `NOT_READY` or `NO_GOAL_REPLY` also exits 0); 2 a simulator was already running; 3 teardown left processes behind; 4 the runner failed or was stopped; 5 the host name or home folder was found in the run files. A series stops at the first non-zero run.
 
 **How a run goes.**
 1. Write the world (Nav2's stock TurtleBot 3 sandbox plus the incident's walls) and the robot (stock Waffle plus a pose publisher for the true position) into the run folder.
@@ -65,16 +65,16 @@ Simulation only, not something a reporter would have: `groundtruth.csv`, `world.
 | 1 | The command runs headless from start to finish and leaves no simulator process behind | pass: 3 of 3, `leftover` empty; in 1 run the launch group did not stop on SIGTERM within 10 s and was killed | pass: 3 of 3, `leftover` empty; every group stopped on SIGINT or SIGTERM |
 | 2 | Each run folder holds `result.json`, `nav2.log`, a readable bag, `groundtruth.csv` and the deployed files | pass: 3 of 3; bags 14.2 to 14.9 MB | pass: 3 of 3; bags 4.6 to 5.4 MB |
 | 3 | The recording covers the whole mission, including the action status and diagnostics | pass: 3 of 3 bags last as long as the mission or longer; no topic missing | same |
-| 4 | The reported behaviour appears | pass: 3 of 3 stayed within 0.10 m of one spot in front of the doorway for at least 15 s (47.7 s, 47.2 s, 65.4 s); 2 then got through, 1 failed with code 208 | pass: 3 of 3 failed with code 208 after turning, pausing, backing up and turning again (17.5 s, 18.2 s, 19.0 s) |
+| 4 | The behaviour in the operator note appears (whether it has the same cause as the source report is not verified) | pass: 3 of 3 stayed within 0.10 m of one spot in front of the doorway for at least 15 s (47.7 s, 47.2 s, 65.4 s); 2 then got through, 1 failed with code 208 | pass: 3 of 3 failed with code 208 after turning, pausing, backing up and turning again (17.5 s, 18.2 s, 19.0 s) |
 | 5 | Nothing the reporter would hand over states a cause | pass: the deployed configuration is Nav2's stock file plus one attribution line; no links to the source reports (they are in `docs/REFERENCES.md`); the note states only what was seen. `incident.json` and the run's world file describe the simulated site and are not reporter files | pass: Nav2's stock configuration with the Smac 2D planner; otherwise as A |
 | 6 | No host name or home folder in any run file, bag included | pass: `private_hits` empty in 3 of 3 | same |
-| 7 | The unit tests pass | pass: 23 of 23, for `observe`, `sim_assets`, `procs`, `logs` and one teardown case. Each test failed before its code was written or fixed, except the teardown test, which was written after the code and checked by running it against the old teardown order, which fails it | same |
+| 7 | The unit tests pass | pass: 23 of 23, for `observe`, `sim_assets`, `procs`, `logs` and one teardown case. By our account each test failed before its code was written or fixed (the history here does not show it), except the teardown test, which was written after the code and checked against the old teardown order, which fails it | same |
 
 Not covered by any test yet: `run()` and `main()` end to end, the exit codes, the signal handling, `NOT_READY`, `NO_GOAL_REPLY` and the recorder timeout. They are on the to-do list.
 
 Known limit: the recorder stores no message definition for `/navigate_to_pose/_action/status` and `/feedback` (`bag.log` says so). ROS 2 tools read them; tools that rely on the stored definition may not.
 
-**Edge cases.**
+**Edge cases** (implemented, not covered by tests; known gaps are in `docs/TODO.md`):
 - A simulator already running: refused before anything starts (exit 2).
 - Nav2 never ready within 120 s, or simulated time stops during the 2 s settling: recorded as `NOT_READY`, then torn down.
 - The goal gets no reply within 10 s: recorded as `NO_GOAL_REPLY`.

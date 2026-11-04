@@ -9,7 +9,8 @@ licensed under the Apache License, Version 2.0:
 
 - nav2_bringup 1.3.13 (https://github.com/ros-navigation/navigation2):
   incidents/*/deployed/nav2_params.yaml are based on nav2_bringup/params/nav2_params.yaml, with an
-  attribution line added; B-drop-off's copy also has its planner section changed to the Smac 2D planner.
+  attribution line added; B-drop-off's copy also has its planner section changed to the Smac 2D planner,
+  and C-corridor's copy has the MPPI CostCritic cost_weight changed from 3.81 to 25.0 (synthetic incident).
   incidents/*/deployed/map.pgm are nav2_bringup/maps/tb3_sandbox.pgm with walls drawn in, and
   incidents/*/deployed/map.yaml point to them (tb3_sandbox.yaml values, rewritten).
 - nav2_minimal_tb3_sim 1.0.1 (https://github.com/ros-navigation/nav2_minimal_turtlebot_simulation):

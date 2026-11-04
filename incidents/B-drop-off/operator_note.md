@@ -1,6 +1,6 @@
 # Incident B-drop-off: operator's note
 
-Written from the three recorded runs in `runs/` (27 October 2026).
+Written by us from the three recorded runs in `runs/` (27 October 2026), in the form of an operator's report; no real operator was involved.
 
 - **Robot:** TurtleBot 3 Waffle, running Nav2 with the configuration in `deployed/nav2_params.yaml` and the site map in `deployed/map.yaml`.
 - **Mission:** from start (-2.0, -0.5) to the drop-off point (1.75, -0.55).
