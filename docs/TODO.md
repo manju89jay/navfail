@@ -1,4 +1,5 @@
 # navfail: to-do list (after the first version works)
+> **Status, 4 November 2026:** this is the backlog written on 27 October, before the experiment was built. It is kept as written. What was built and what it found is in `README.md` and `docs/REPORT.md`; the experiment targeted the synthetic corridor incident C, not incident A, and the Meta model was reached and used (Muse Wonder 1.0).
 
 Written 27 October 2026. Not scheduled: the hackathon target is incident A (README section 4); items are picked from here after that works.
 
