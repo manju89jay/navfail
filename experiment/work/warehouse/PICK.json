@@ -1,0 +1,25 @@
+{
+  "seed": 20261104,
+  "shortlist": [
+    {
+      "id": "navigation2#5884",
+      "symptom": "planner fails to create plan through a 1.1 m narrow aisle (inflation_radius 0.9, large footprint); another planner succeeds",
+      "url": "https://github.com/ros-navigation/navigation2/issues/5884"
+    },
+    {
+      "id": "navigation2#5709",
+      "symptom": "robot moves 10-20 cm then rotates left/right on the spot indefinitely, never reaches the goal",
+      "url": "https://github.com/ros-navigation/navigation2/issues/5709"
+    },
+    {
+      "id": "navigation2#4938",
+      "symptom": "robot reaches the goal position but oscillates on final orientation and fails to make progress",
+      "url": "https://github.com/ros-navigation/navigation2/issues/4938"
+    }
+  ],
+  "pick": {
+    "id": "navigation2#4938",
+    "symptom": "robot reaches the goal position but oscillates on final orientation and fails to make progress",
+    "url": "https://github.com/ros-navigation/navigation2/issues/4938"
+  }
+}

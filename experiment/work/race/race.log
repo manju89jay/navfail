@@ -1,0 +1,85 @@
+START agent-1
+DONE agent-1 proven=True runs=8 agent_spend=$0.07
+START random-1
+DONE random-1 proven=True runs=18 agent_spend=$0.07
+START agent-2
+DONE agent-2 proven=True runs=8 agent_spend=$0.15
+START random-2
+DONE random-2 proven=True runs=9 agent_spend=$0.15
+START agent-3
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/urllib/request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/usr/lib/python3.12/http/client.py", line 1365, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1411, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1360, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1120, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1064, in send
+    self.connect()
+  File "/usr/lib/python3.12/http/client.py", line 1499, in connect
+    super().connect()
+  File "/usr/lib/python3.12/http/client.py", line 1030, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 852, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.12/socket.py", line 837, in create_connection
+    sock.connect(sa)
+OSError: [Errno 101] Network is unreachable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/d/repo/navfail/experiment/work/race_driver.py", line 65, in <module>
+    main()
+  File "/mnt/d/repo/navfail/experiment/work/race_driver.py", line 53, in main
+    result = run_search(name, work, proposer, run_one, budget=BUDGET,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/repo/navfail/experiment/search.py", line 57, in run_search
+    proposal = proposer.propose(history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/repo/navfail/experiment/agent_arm.py", line 111, in propose
+    reply = client(messages)
+            ^^^^^^^^^^^^^^^^
+  File "/mnt/d/repo/navfail/experiment/agent_arm.py", line 164, in client
+    with opener(request) as response:
+         ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>
+SKIP agent-1 (already done)
+SKIP random-1 (already done)
+SKIP agent-2 (already done)
+SKIP random-2 (already done)
+START agent-3
+DONE agent-3 proven=True runs=8 agent_spend=$0.21
+START random-3
+DONE random-3 proven=True runs=8 agent_spend=$0.21
+START agent-4
+DONE agent-4 proven=True runs=8 agent_spend=$0.33
+START random-4
+DONE random-4 proven=True runs=28 agent_spend=$0.33
+START agent-5
+DONE agent-5 proven=True runs=8 agent_spend=$0.46
+START random-5
+DONE random-5 proven=True runs=9 agent_spend=$0.46
+RACE COMPLETE

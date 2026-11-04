@@ -93,11 +93,7 @@ obstacles was preserved separately and excluded. Evidence:
 
 ## Demo video
 
-`experiment/work/navfail-demo.mp4` (77 s, silent, captioned cards):
-recorded baseline and winning-run traces from `groundtruth.csv`, the
-race chart generated from `analysis.json`, and the limitations on the
-closing card. Built by `experiment/work/make_video.py`; no generated
-footage depicts the robot or any result.
+The demo video is linked from the README.
 
 Status: FINAL as an internal submission record, approved by the author
 at wrap-up on 4 Nov 2026. External publishing remains the author's step.
