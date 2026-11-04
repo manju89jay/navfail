@@ -1,0 +1,27 @@
+{
+  "search": "random-3",
+  "proven": true,
+  "runs_used": 8,
+  "budget": 40,
+  "candidates": [
+    {
+      "changes": {
+        "CostCritic.cost_weight": 3.1157,
+        "inflation_layer.inflation_radius": 0.7323,
+        "PathAlignCritic.cost_weight": 7.8513
+      },
+      "reason": "random draw (seed 20261106)",
+      "status": "proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": true,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 3,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    }
+  ]
+}

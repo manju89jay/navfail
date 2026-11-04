@@ -1,4 +1,5 @@
 __pycache__/
 *.pyc
+*.mcap
 .pytest_cache/
 .env

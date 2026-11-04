@@ -1,0 +1,15 @@
+{
+  "agent_cost_usd": 0.46343999999999996,
+  "done": [
+    "agent-1",
+    "random-1",
+    "agent-2",
+    "random-2",
+    "agent-3",
+    "random-3",
+    "agent-4",
+    "random-4",
+    "agent-5",
+    "random-5"
+  ]
+}

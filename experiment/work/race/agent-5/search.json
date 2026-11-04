@@ -1,0 +1,27 @@
+{
+  "search": "agent-5",
+  "proven": true,
+  "runs_used": 8,
+  "budget": 40,
+  "candidates": [
+    {
+      "changes": {
+        "CostCritic.cost_weight": 3.81,
+        "inflation_layer.cost_scaling_factor": 10.0,
+        "inflation_layer.inflation_radius": 0.4
+      },
+      "reason": "Robot stalls at the corridor entrance with repeated progress failures. Inflation radius 0.7 with slow cost decay likely fills the narrow corridor with high costs, while the deployed CostCritic weight of 25.0 versus stock 3.81 over-penalizes every trajectory entering it. Reducing inflation radius, steepening cost decay, and restoring CostCritic weight should open the corridor center while retaining inscribed-radius collision costs.",
+      "status": "proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": true,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 3,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    }
+  ]
+}

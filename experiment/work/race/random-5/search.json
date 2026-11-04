@@ -1,0 +1,43 @@
+{
+  "search": "random-5",
+  "proven": true,
+  "runs_used": 9,
+  "budget": 40,
+  "candidates": [
+    {
+      "changes": {
+        "PreferForwardCritic.cost_weight": 8.952,
+        "PathAlignCritic.cost_weight": 8.9427
+      },
+      "reason": "random draw (seed 20261108)",
+      "status": "screening_failed",
+      "non_valid": [],
+      "verdict": {
+        "proven": false,
+        "site_passed": 0,
+        "site_valid": 1,
+        "collisions": 0,
+        "empty_passed": 0,
+        "empty_valid": 0,
+        "runs_counted": 1
+      }
+    },
+    {
+      "changes": {
+        "inflation_layer.cost_scaling_factor": 11.6723
+      },
+      "reason": "random draw (seed 20261108)",
+      "status": "proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": true,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 3,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "search": "agent-4",
+  "proven": true,
+  "runs_used": 8,
+  "budget": 40,
+  "candidates": [
+    {
+      "changes": {
+        "CostCritic.cost_weight": 3.81,
+        "inflation_layer.cost_scaling_factor": 10.0,
+        "inflation_layer.inflation_radius": 0.4
+      },
+      "reason": "Deployed CostCritic weight 25.0, far above stock 3.81, dominates MPPI in the corridor where 0.7 m inflation makes costs high throughout, so trajectories entering are rejected and progress fails. Restoring 3.81 and reducing inflation radius to 0.4 m with faster cost decay (10.0) leaves the corridor centre low-cost while retaining high costs near walls.",
+      "status": "proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": true,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 3,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    }
+  ]
+}

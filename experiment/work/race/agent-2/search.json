@@ -1,0 +1,25 @@
+{
+  "search": "agent-2",
+  "proven": true,
+  "runs_used": 8,
+  "budget": 40,
+  "candidates": [
+    {
+      "changes": {
+        "CostCritic.cost_weight": 3.81
+      },
+      "reason": "Deployed CostCritic weight is 25.0 versus stock 3.81, over-penalizing the inflated cost inside the narrow corridor so MPPI stalls at its entrance with repeated failed-to-make-progress. Restoring 3.81 lets the controller follow the global path through the corridor while retaining obstacle avoidance.",
+      "status": "proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": true,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 3,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    }
+  ]
+}

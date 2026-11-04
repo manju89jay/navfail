@@ -1,0 +1,133 @@
+{
+  "search": "random-4",
+  "proven": true,
+  "runs_used": 28,
+  "budget": 40,
+  "candidates": [
+    {
+      "changes": {
+        "inflation_layer.inflation_radius": 0.8654,
+        "PreferForwardCritic.cost_weight": 1.4989,
+        "inflation_layer.cost_scaling_factor": 9.5123
+      },
+      "reason": "random draw (seed 20261107)",
+      "status": "not_proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": false,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 0,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    },
+    {
+      "changes": {
+        "PathAlignCritic.cost_weight": 14.3845
+      },
+      "reason": "random draw (seed 20261107)",
+      "status": "screening_failed",
+      "non_valid": [],
+      "verdict": {
+        "proven": false,
+        "site_passed": 0,
+        "site_valid": 1,
+        "collisions": 0,
+        "empty_passed": 0,
+        "empty_valid": 0,
+        "runs_counted": 1
+      }
+    },
+    {
+      "changes": {
+        "PathFollowCritic.cost_weight": 2.9189,
+        "CostCritic.cost_weight": 1.6752,
+        "PathAlignCritic.cost_weight": 19.7399
+      },
+      "reason": "random draw (seed 20261107)",
+      "status": "screening_failed",
+      "non_valid": [],
+      "verdict": {
+        "proven": false,
+        "site_passed": 0,
+        "site_valid": 1,
+        "collisions": 0,
+        "empty_passed": 0,
+        "empty_valid": 0,
+        "runs_counted": 1
+      }
+    },
+    {
+      "changes": {
+        "PathFollowCritic.cost_weight": 2.5065
+      },
+      "reason": "random draw (seed 20261107)",
+      "status": "screening_failed",
+      "non_valid": [],
+      "verdict": {
+        "proven": false,
+        "site_passed": 0,
+        "site_valid": 1,
+        "collisions": 0,
+        "empty_passed": 0,
+        "empty_valid": 0,
+        "runs_counted": 1
+      }
+    },
+    {
+      "changes": {
+        "PathFollowCritic.cost_weight": 7.1713
+      },
+      "reason": "random draw (seed 20261107)",
+      "status": "not_proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": false,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 0,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    },
+    {
+      "changes": {
+        "PreferForwardCritic.cost_weight": 8.2584
+      },
+      "reason": "random draw (seed 20261107)",
+      "status": "screening_failed",
+      "non_valid": [],
+      "verdict": {
+        "proven": false,
+        "site_passed": 0,
+        "site_valid": 1,
+        "collisions": 0,
+        "empty_passed": 0,
+        "empty_valid": 0,
+        "runs_counted": 1
+      }
+    },
+    {
+      "changes": {
+        "inflation_layer.cost_scaling_factor": 12.6076,
+        "CostCritic.cost_weight": 5.6274,
+        "inflation_layer.inflation_radius": 0.6628
+      },
+      "reason": "random draw (seed 20261107)",
+      "status": "proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": true,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 3,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    }
+  ]
+}

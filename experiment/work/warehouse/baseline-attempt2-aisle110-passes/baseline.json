@@ -1,0 +1,42 @@
+{
+  "valid_runs": 5,
+  "failures": 0,
+  "gate_passed": false,
+  "all": [
+    {
+      "run": "20261104-040906",
+      "kind": "valid",
+      "passed": true,
+      "reached_goal": true,
+      "longest_still_ms": 2199
+    },
+    {
+      "run": "20261104-040934",
+      "kind": "valid",
+      "passed": true,
+      "reached_goal": true,
+      "longest_still_ms": 1899
+    },
+    {
+      "run": "20261104-041003",
+      "kind": "valid",
+      "passed": true,
+      "reached_goal": true,
+      "longest_still_ms": 2202
+    },
+    {
+      "run": "20261104-041030",
+      "kind": "valid",
+      "passed": true,
+      "reached_goal": true,
+      "longest_still_ms": 2199
+    },
+    {
+      "run": "20261104-041101",
+      "kind": "valid",
+      "passed": true,
+      "reached_goal": true,
+      "longest_still_ms": 1902
+    }
+  ]
+}

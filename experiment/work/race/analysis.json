@@ -1,0 +1,453 @@
+{
+  "searches": {
+    "agent-1": {
+      "proven": true,
+      "runs_used": 8,
+      "runs_in_folders": 8,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "CostCritic.cost_weight": 3.81
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 4,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "agent-2": {
+      "proven": true,
+      "runs_used": 8,
+      "runs_in_folders": 8,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "CostCritic.cost_weight": 3.81
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "agent-3": {
+      "proven": true,
+      "runs_used": 8,
+      "runs_in_folders": 8,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "CostCritic.cost_weight": 3.81
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "agent-4": {
+      "proven": true,
+      "runs_used": 8,
+      "runs_in_folders": 8,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "CostCritic.cost_weight": 3.81,
+            "inflation_layer.cost_scaling_factor": 10.0,
+            "inflation_layer.inflation_radius": 0.4
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "agent-5": {
+      "proven": true,
+      "runs_used": 8,
+      "runs_in_folders": 8,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "CostCritic.cost_weight": 3.81,
+            "inflation_layer.cost_scaling_factor": 10.0,
+            "inflation_layer.inflation_radius": 0.4
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "random-1": {
+      "proven": true,
+      "runs_used": 18,
+      "runs_in_folders": 18,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "inflation_layer.inflation_radius": 0.5596,
+            "PathAlignCritic.cost_weight": 12.6441,
+            "PathFollowCritic.cost_weight": 3.0524
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "inflation_layer.inflation_radius": 0.903
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "inflation_layer.cost_scaling_factor": 6.2589,
+            "CostCritic.cost_weight": 1.255,
+            "PreferForwardCritic.cost_weight": 9.8214
+          },
+          "status": "not_proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 2,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        },
+        {
+          "changes": {
+            "PathAlignCritic.cost_weight": 14.7036,
+            "inflation_layer.cost_scaling_factor": 12.6959,
+            "PreferForwardCritic.cost_weight": 8.1329
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "random-2": {
+      "proven": true,
+      "runs_used": 9,
+      "runs_in_folders": 9,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "inflation_layer.inflation_radius": 0.852
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "CostCritic.cost_weight": 4.8131,
+            "PreferForwardCritic.cost_weight": 2.9699,
+            "PathAlignCritic.cost_weight": 18.9659
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "random-3": {
+      "proven": true,
+      "runs_used": 8,
+      "runs_in_folders": 8,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "CostCritic.cost_weight": 3.1157,
+            "inflation_layer.inflation_radius": 0.7323,
+            "PathAlignCritic.cost_weight": 7.8513
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "random-4": {
+      "proven": true,
+      "runs_used": 28,
+      "runs_in_folders": 28,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "inflation_layer.inflation_radius": 0.8654,
+            "PreferForwardCritic.cost_weight": 1.4989,
+            "inflation_layer.cost_scaling_factor": 9.5123
+          },
+          "status": "not_proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        },
+        {
+          "changes": {
+            "PathAlignCritic.cost_weight": 14.3845
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "PathFollowCritic.cost_weight": 2.9189,
+            "CostCritic.cost_weight": 1.6752,
+            "PathAlignCritic.cost_weight": 19.7399
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "PathFollowCritic.cost_weight": 2.5065
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "PathFollowCritic.cost_weight": 7.1713
+          },
+          "status": "not_proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        },
+        {
+          "changes": {
+            "PreferForwardCritic.cost_weight": 8.2584
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "inflation_layer.cost_scaling_factor": 12.6076,
+            "CostCritic.cost_weight": 5.6274,
+            "inflation_layer.inflation_radius": 0.6628
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    },
+    "random-5": {
+      "proven": true,
+      "runs_used": 9,
+      "runs_in_folders": 9,
+      "counts_agree": true,
+      "candidates": [
+        {
+          "changes": {
+            "PreferForwardCritic.cost_weight": 8.952,
+            "PathAlignCritic.cost_weight": 8.9427
+          },
+          "status": "screening_failed",
+          "non_valid": [],
+          "verdict": {
+            "proven": false,
+            "site_passed": 0,
+            "site_valid": 1,
+            "collisions": 0,
+            "empty_passed": 0,
+            "empty_valid": 0,
+            "runs_counted": 1
+          }
+        },
+        {
+          "changes": {
+            "inflation_layer.cost_scaling_factor": 11.6723
+          },
+          "status": "proven",
+          "non_valid": [],
+          "verdict": {
+            "proven": true,
+            "site_passed": 5,
+            "site_valid": 5,
+            "collisions": 0,
+            "empty_passed": 3,
+            "empty_valid": 3,
+            "runs_counted": 8
+          }
+        }
+      ]
+    }
+  },
+  "verify_mismatches": [],
+  "count_disagreements": [],
+  "found": {
+    "agent": 5,
+    "random": 5
+  },
+  "medians": {
+    "agent": 8,
+    "random": 9
+  },
+  "verdict": "fewer",
+  "agent_cost_usd": 0.46343999999999996
+}

@@ -1,0 +1,587 @@
+[INFO] [launch]: All log files can be found below <home>/.ros/log/2026-11-03-10-13-27-245674-<host>-6067
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [xacro-1]: process started with pid [6105]
+[INFO] [parameter_bridge-2]: process started with pid [6106]
+[INFO] [create-3]: process started with pid [6107]
+[INFO] [gz-4]: process started with pid [6108]
+[INFO] [robot_state_publisher-5]: process started with pid [6109]
+[INFO] [map_server-6]: process started with pid [6152]
+[INFO] [amcl-7]: process started with pid [6153]
+[INFO] [lifecycle_manager-8]: process started with pid [6154]
+[INFO] [controller_server-9]: process started with pid [6155]
+[INFO] [smoother_server-10]: process started with pid [6156]
+[INFO] [planner_server-11]: process started with pid [6157]
+[INFO] [route_server-12]: process started with pid [6158]
+[INFO] [behavior_server-13]: process started with pid [6159]
+[INFO] [bt_navigator-14]: process started with pid [6160]
+[INFO] [waypoint_follower-15]: process started with pid [6161]
+[INFO] [velocity_smoother-16]: process started with pid [6163]
+[INFO] [collision_monitor-17]: process started with pid [6164]
+[INFO] [opennav_docking-18]: process started with pid [6165]
+[INFO] [lifecycle_manager-19]: process started with pid [6168]
+[robot_state_publisher-5] [INFO] [1793697207.585499644] [robot_state_publisher]: Robot initialized
+[create-3] [INFO] [1793697207.623126012] [ros_gz_sim]: Requesting list of world names.
+[lifecycle_manager-8] [INFO] [1793697207.631141484] [lifecycle_manager_localization]: Creating
+[lifecycle_manager-8] [INFO] [1793697207.635330336] [lifecycle_manager_localization]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[INFO] [xacro-1]: process has finished cleanly [pid 6105]
+[bt_navigator-14] [INFO] [1793697207.642670739] [bt_navigator]: 
+[bt_navigator-14] 	bt_navigator lifecycle node launched. 
+[bt_navigator-14] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-14] [INFO] [1793697207.643462656] [bt_navigator]: Creating
+[planner_server-11] [INFO] [1793697207.648647498] [planner_server]: 
+[planner_server-11] 	planner_server lifecycle node launched. 
+[planner_server-11] 	Waiting on external lifecycle transitions to activate
+[planner_server-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-11] [INFO] [1793697207.650049340] [planner_server]: Creating
+[controller_server-9] [INFO] [1793697207.656276696] [controller_server]: 
+[controller_server-9] 	controller_server lifecycle node launched. 
+[controller_server-9] 	Waiting on external lifecycle transitions to activate
+[controller_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-9] [INFO] [1793697207.658210774] [controller_server]: Creating controller server
+[behavior_server-13] [INFO] [1793697207.662037258] [behavior_server]: 
+[behavior_server-13] 	behavior_server lifecycle node launched. 
+[behavior_server-13] 	Waiting on external lifecycle transitions to activate
+[behavior_server-13] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-19] [INFO] [1793697207.663343509] [lifecycle_manager_navigation]: Creating
+[lifecycle_manager-19] [INFO] [1793697207.666704653] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[planner_server-11] [INFO] [1793697207.672647498] [global_costmap.global_costmap]: 
+[planner_server-11] 	global_costmap lifecycle node launched. 
+[planner_server-11] 	Waiting on external lifecycle transitions to activate
+[planner_server-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-11] [INFO] [1793697207.672972165] [global_costmap.global_costmap]: Creating Costmap
+[velocity_smoother-16] [INFO] [1793697207.675205460] [velocity_smoother]: 
+[velocity_smoother-16] 	velocity_smoother lifecycle node launched. 
+[velocity_smoother-16] 	Waiting on external lifecycle transitions to activate
+[velocity_smoother-16] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-7] [INFO] [1793697207.679781730] [amcl]: 
+[amcl-7] 	amcl lifecycle node launched. 
+[amcl-7] 	Waiting on external lifecycle transitions to activate
+[amcl-7] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-7] [INFO] [1793697207.680091968] [amcl]: Creating
+[controller_server-9] [INFO] [1793697207.681523126] [local_costmap.local_costmap]: 
+[controller_server-9] 	local_costmap lifecycle node launched. 
+[controller_server-9] 	Waiting on external lifecycle transitions to activate
+[controller_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-9] [INFO] [1793697207.681805961] [local_costmap.local_costmap]: Creating Costmap
+[route_server-12] [INFO] [1793697207.693255512] [route_server]: 
+[route_server-12] 	route_server lifecycle node launched. 
+[route_server-12] 	Waiting on external lifecycle transitions to activate
+[route_server-12] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[smoother_server-10] [INFO] [1793697207.708050493] [smoother_server]: 
+[smoother_server-10] 	smoother_server lifecycle node launched. 
+[smoother_server-10] 	Waiting on external lifecycle transitions to activate
+[smoother_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[smoother_server-10] [INFO] [1793697207.709123668] [smoother_server]: Creating smoother server
+[collision_monitor-17] [INFO] [1793697207.710447996] [collision_monitor]: 
+[collision_monitor-17] 	collision_monitor lifecycle node launched. 
+[collision_monitor-17] 	Waiting on external lifecycle transitions to activate
+[collision_monitor-17] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-15] [INFO] [1793697207.713279643] [waypoint_follower]: 
+[waypoint_follower-15] 	waypoint_follower lifecycle node launched. 
+[waypoint_follower-15] 	Waiting on external lifecycle transitions to activate
+[waypoint_follower-15] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-15] [INFO] [1793697207.713574432] [waypoint_follower]: Creating
+[map_server-6] [INFO] [1793697207.722681374] [map_server]: 
+[map_server-6] 	map_server lifecycle node launched. 
+[map_server-6] 	Waiting on external lifecycle transitions to activate
+[map_server-6] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-6] [INFO] [1793697207.722783163] [map_server]: Creating
+[opennav_docking-18] [INFO] [1793697207.729707625] [docking_server]: 
+[opennav_docking-18] 	docking_server lifecycle node launched. 
+[opennav_docking-18] 	Waiting on external lifecycle transitions to activate
+[opennav_docking-18] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[opennav_docking-18] [INFO] [1793697207.729905816] [docking_server]: Creating docking_server
+[lifecycle_manager-8] [INFO] [1793697207.820820620] [lifecycle_manager_localization]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-8] [INFO] [1793697207.820868726] [lifecycle_manager_localization]: [34m[1mConfiguring map_server[0m[0m
+[map_server-6] [INFO] [1793697207.927039673] [map_server]: Configuring
+[map_server-6] [INFO] [1793697207.927103795] [map_io]: Loading yaml file: /mnt/d/repo/navfail/experiment/work/baseline/runs/20261103-101326/map.yaml
+[map_server-6] [INFO] [1793697207.929752884] [map_io]: resolution: 0.05
+[map_server-6] [INFO] [1793697207.929776373] [map_io]: origin[0]: -10
+[map_server-6] [INFO] [1793697207.929778980] [map_io]: origin[1]: -10
+[map_server-6] [INFO] [1793697207.929780613] [map_io]: origin[2]: 0
+[map_server-6] [INFO] [1793697207.929782364] [map_io]: free_thresh: 0.196
+[map_server-6] [INFO] [1793697207.929783929] [map_io]: occupied_thresh: 0.65
+[map_server-6] [INFO] [1793697207.929786193] [map_io]: mode: trinary
+[map_server-6] [INFO] [1793697207.929788832] [map_io]: negate: 0
+[map_server-6] [INFO] [1793697207.929940283] [map_io]: Loading image_file: /mnt/d/repo/navfail/experiment/work/baseline/runs/20261103-101326/map.pgm
+[map_server-6] [INFO] [1793697207.943038049] [map_io]: Read map /mnt/d/repo/navfail/experiment/work/baseline/runs/20261103-101326/map.pgm: 384 X 384 map @ 0.05 m/cell
+[lifecycle_manager-8] [INFO] [1793697207.949302761] [lifecycle_manager_localization]: [34m[1mConfiguring amcl[0m[0m
+[amcl-7] [INFO] [1793697207.949571585] [amcl]: Configuring
+[amcl-7] [INFO] [1793697207.949624239] [amcl]: initTransforms
+[amcl-7] [INFO] [1793697207.958644468] [amcl]: initPubSub
+[amcl-7] [INFO] [1793697207.966312430] [amcl]: Subscribed to map topic.
+[lifecycle_manager-8] [INFO] [1793697207.971545580] [lifecycle_manager_localization]: [34m[1mActivating map_server[0m[0m
+[map_server-6] [INFO] [1793697207.971869486] [map_server]: Activating
+[map_server-6] [INFO] [1793697207.972880062] [map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-7] [INFO] [1793697207.973055606] [amcl]: Received a 384 X 384 map @ 0.050 m/pix
+[lifecycle_manager-19] [INFO] [1793697207.979223135] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-19] [INFO] [1793697207.979271761] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-9] [INFO] [1793697207.979539269] [controller_server]: Configuring controller interface
+[controller_server-9] [INFO] [1793697207.979554039] [controller_server]: getting progress checker plugins..
+[controller_server-9] [INFO] [1793697207.979852226] [controller_server]: getting goal checker plugins..
+[controller_server-9] [INFO] [1793697207.980154585] [controller_server]: Controller frequency set to 20.0000Hz
+[controller_server-9] [INFO] [1793697207.980194391] [local_costmap.local_costmap]: Configuring
+[controller_server-9] [INFO] [1793697207.989781520] [local_costmap.local_costmap]: Using plugin "voxel_layer"
+[controller_server-9] [INFO] [1793697207.993963757] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[controller_server-9] [INFO] [1793697208.008777383] [local_costmap.local_costmap]: Initialized plugin "voxel_layer"
+[controller_server-9] [INFO] [1793697208.008814399] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[controller_server-9] [INFO] [1793697208.010379620] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[controller_server-9] [INFO] [1793697208.031386572] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[controller_server-9] [INFO] [1793697208.032070532] [controller_server]: Controller Server has progress_checker  progress checkers available.
+[controller_server-9] [INFO] [1793697208.032683342] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[controller_server-9] [INFO] [1793697208.033650732] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[controller_server-9] [INFO] [1793697208.034683907] [controller_server]: Created controller : FollowPath of type nav2_mppi_controller::MPPIController
+[controller_server-9] [INFO] [1793697208.039981903] [controller_server]: Controller period is equal to model dt. Control sequence shifting is ON
+[controller_server-9] [INFO] [1793697208.042074613] [controller_server]: ConstraintCritic instantiated with 1 power and 4.000000 weight.
+[controller_server-9] [INFO] [1793697208.042114331] [controller_server]: Critic loaded : mppi::critics::ConstraintCritic
+[controller_server-9] [INFO] [1793697208.044532161] [controller_server]: InflationCostCritic instantiated with 1 power and 300.000000 / 0.098425 weights. Critic will collision check based on circular cost.
+[controller_server-9] [INFO] [1793697208.044565427] [controller_server]: Critic loaded : mppi::critics::CostCritic
+[controller_server-9] [INFO] [1793697208.045512674] [controller_server]: GoalCritic instantiated with 1 power and 5.000000 weight.
+[controller_server-9] [INFO] [1793697208.045533614] [controller_server]: Critic loaded : mppi::critics::GoalCritic
+[controller_server-9] [INFO] [1793697208.046785460] [controller_server]: GoalAngleCritic instantiated with 1 power, 3.000000 weight, 0.500000 angular threshold and symmetric_yaw_tolerance disabled
+[controller_server-9] [INFO] [1793697208.046818753] [controller_server]: Critic loaded : mppi::critics::GoalAngleCritic
+[controller_server-9] [INFO] [1793697208.048908568] [controller_server]: ReferenceTrajectoryCritic instantiated with 1 power and 14.000000 weight
+[controller_server-9] [INFO] [1793697208.048945287] [controller_server]: Critic loaded : mppi::critics::PathAlignCritic
+[controller_server-9] [INFO] [1793697208.050358842] [controller_server]: Critic loaded : mppi::critics::PathFollowCritic
+[controller_server-9] [INFO] [1793697208.053222889] [controller_server]: PathAngleCritic instantiated with 1 power and 2.000000 weight. Mode set to: Forward Preference
+[controller_server-9] [INFO] [1793697208.053276898] [controller_server]: Critic loaded : mppi::critics::PathAngleCritic
+[controller_server-9] [INFO] [1793697208.054399071] [controller_server]: PreferForwardCritic instantiated with 1 power and 5.000000 weight.
+[controller_server-9] [INFO] [1793697208.054423601] [controller_server]: Critic loaded : mppi::critics::PreferForwardCritic
+[controller_server-9] [INFO] [1793697208.056465204] [controller_server]: Optimizer reset
+[controller_server-9] [INFO] [1793697208.062201115] [MPPIController]: Configured MPPI Controller: FollowPath
+[controller_server-9] [INFO] [1793697208.062301242] [controller_server]: Controller Server has FollowPath  controllers available.
+[lifecycle_manager-19] [INFO] [1793697208.075765049] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[smoother_server-10] [INFO] [1793697208.076095635] [smoother_server]: Configuring smoother server
+[lifecycle_manager-8] [INFO] [1793697208.078702962] [lifecycle_manager_localization]: Server map_server connected with bond.
+[lifecycle_manager-8] [INFO] [1793697208.078748457] [lifecycle_manager_localization]: [34m[1mActivating amcl[0m[0m
+[amcl-7] [INFO] [1793697208.078967577] [amcl]: Activating
+[amcl-7] [INFO] [1793697208.078992550] [amcl]: Creating bond (amcl) to lifecycle manager.
+[smoother_server-10] [INFO] [1793697208.089531233] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[smoother_server-10] [INFO] [1793697208.091113224] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[lifecycle_manager-19] [INFO] [1793697208.100006977] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-11] [INFO] [1793697208.100234263] [planner_server]: Configuring
+[planner_server-11] [INFO] [1793697208.100256664] [global_costmap.global_costmap]: Configuring
+[create-3] [INFO] [1793697208.104250841] [ros_gz_sim]: Entity creation successful.
+[planner_server-11] [INFO] [1793697208.110743424] [global_costmap.global_costmap]: Using plugin "static_layer"
+[planner_server-11] [INFO] [1793697208.115552096] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[planner_server-11] [INFO] [1793697208.117436770] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[planner_server-11] [INFO] [1793697208.117482700] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[planner_server-11] [INFO] [1793697208.119107052] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[planner_server-11] [INFO] [1793697208.125005011] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[planner_server-11] [INFO] [1793697208.125045618] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[planner_server-11] [INFO] [1793697208.126286100] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[planner_server-11] [INFO] [1793697208.154059560] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 384 X 384 at 0.050000 m/pix
+[planner_server-11] [INFO] [1793697208.154206182] [planner_server]: Created global planner plugin GridBased of type nav2_navfn_planner::NavfnPlanner
+[planner_server-11] [INFO] [1793697208.154225367] [planner_server]: Configuring plugin GridBased of type NavfnPlanner
+[planner_server-11] [INFO] [1793697208.155511563] [planner_server]: Planner Server has GridBased  planners available.
+[lifecycle_manager-19] [INFO] [1793697208.169893140] [lifecycle_manager_navigation]: [34m[1mConfiguring route_server[0m[0m
+[route_server-12] [INFO] [1793697208.170181613] [route_server]: Configuring
+[lifecycle_manager-8] [INFO] [1793697208.184800609] [lifecycle_manager_localization]: Server amcl connected with bond.
+[lifecycle_manager-8] [INFO] [1793697208.184865388] [lifecycle_manager_localization]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-8] [INFO] [1793697208.184872487] [lifecycle_manager_localization]: [34m[1mCreating bond timer...[0m[0m
+[route_server-12] [INFO] [1793697208.198618276] [route_server]: Created GraphFileLoader GeoJsonGraphFileLoader of type nav2_route::GeoJsonGraphFileLoader
+[route_server-12] [INFO] [1793697208.198661263] [route_server]: Configuring geojson graph file loader
+[route_server-12] [INFO] [1793697208.198665973] [route_server]: No graph file provided to load yet.
+[route_server-12] [INFO] [1793697208.202186523] [route_server]: Created edge cost function plugin DistanceScorer of type nav2_route::DistanceScorer
+[route_server-12] [INFO] [1793697208.202221747] [route_server]: Configuring distance scorer.
+[route_server-12] [INFO] [1793697208.203165819] [route_server]: Created edge cost function plugin CostmapScorer of type nav2_route::CostmapScorer
+[route_server-12] [INFO] [1793697208.203202072] [route_server]: Configuring costmap scorer.
+[route_server-12] [INFO] [1793697208.207052950] [route_server]: Created route operation AdjustSpeedLimit of type nav2_route::AdjustSpeedLimit
+[route_server-12] [INFO] [1793697208.207090787] [route_server]: Configuring Adjust speed limit operation.
+[route_server-12] [INFO] [1793697208.209007997] [route_server]: Created route operation ReroutingService of type nav2_route::ReroutingService
+[route_server-12] [INFO] [1793697208.209031960] [route_server]: Configuring Rerouting service operation.
+[route_server-12] [INFO] [1793697208.210843409] [route_server]: Created route operation CollisionMonitor of type nav2_route::CollisionMonitor
+[route_server-12] [INFO] [1793697208.211118883] [route_server]: Using costmap topic: local_costmap/costmap_raw instead of server costmap topic: global_costmap/costmap_raw for CollisionMonitor.
+[lifecycle_manager-19] [INFO] [1793697208.216621182] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-13] [INFO] [1793697208.216850668] [behavior_server]: Configuring
+[behavior_server-13] [INFO] [1793697208.222261355] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors::Spin
+[behavior_server-13] [INFO] [1793697208.223297459] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors::BackUp
+[behavior_server-13] [INFO] [1793697208.224125397] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors::DriveOnHeading
+[behavior_server-13] [INFO] [1793697208.224940065] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors::AssistedTeleop
+[INFO] [create-3]: process has finished cleanly [pid 6107]
+[behavior_server-13] [INFO] [1793697208.226551479] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors::Wait
+[behavior_server-13] [INFO] [1793697208.233787956] [behavior_server]: Configuring spin
+[behavior_server-13] [INFO] [1793697208.243343047] [behavior_server]: Configuring backup
+[behavior_server-13] [INFO] [1793697208.249256545] [behavior_server]: Configuring drive_on_heading
+[behavior_server-13] [INFO] [1793697208.255799400] [behavior_server]: Configuring assisted_teleop
+[behavior_server-13] [INFO] [1793697208.264451786] [behavior_server]: Configuring wait
+[lifecycle_manager-19] [INFO] [1793697208.271089699] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[velocity_smoother-16] [INFO] [1793697208.271377818] [velocity_smoother]: Configuring velocity smoother
+[lifecycle_manager-19] [INFO] [1793697208.277482314] [lifecycle_manager_navigation]: [34m[1mConfiguring collision_monitor[0m[0m
+[collision_monitor-17] [INFO] [1793697208.277810167] [collision_monitor]: Configuring
+[collision_monitor-17] [INFO] [1793697208.285283568] [collision_monitor]: [scan]: Creating Scan
+[collision_monitor-17] [INFO] [1793697208.288126546] [collision_monitor]: [FootprintApproach]: Creating Polygon
+[collision_monitor-17] [INFO] [1793697208.288423738] [collision_monitor]: [FootprintApproach]: Polygon points are not defined. Using dynamic subscription instead.
+[collision_monitor-17] [INFO] [1793697208.290703408] [collision_monitor]: [FootprintApproach]: Making footprint subscriber on /local_costmap/published_footprint topic
+[lifecycle_manager-19] [INFO] [1793697208.301882856] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-14] [INFO] [1793697208.302153033] [bt_navigator]: Configuring
+[bt_navigator-14] [INFO] [1793697208.308557810] [bt_navigator]: Creating navigator id navigate_to_pose of type nav2_bt_navigator::NavigateToPoseNavigator
+[bt_navigator-14] [INFO] [1793697208.368836774] [bt_navigator]: Creating navigator id navigate_through_poses of type nav2_bt_navigator::NavigateThroughPosesNavigator
+[lifecycle_manager-19] [INFO] [1793697208.402880415] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[waypoint_follower-15] [INFO] [1793697208.403359658] [waypoint_follower]: Configuring
+[waypoint_follower-15] [INFO] [1793697208.429711590] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[lifecycle_manager-19] [INFO] [1793697208.430723356] [lifecycle_manager_navigation]: [34m[1mConfiguring docking_server[0m[0m
+[opennav_docking-18] [INFO] [1793697208.430954831] [docking_server]: Configuring docking_server
+[opennav_docking-18] [INFO] [1793697208.430978964] [docking_server]: Controller frequency set to 50.0000Hz
+[opennav_docking-18] [INFO] [1793697208.457591615] [docking_server]: Created charging dock plugin simple_charging_dock of type opennav_docking::SimpleChargingDock
+[opennav_docking-18] [WARN] [1793697208.464671189] [docking_server]: Dock database filepath nor dock parameters set. Docking actions can only be executed specifying the dock pose via the action request. Or update the dock database via the reload_database service.
+[opennav_docking-18] [INFO] [1793697208.464700064] [docking_server]: Docking Server has 1 dock types and 0 dock instances available.
+[lifecycle_manager-19] [INFO] [1793697208.466321664] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[controller_server-9] [INFO] [1793697208.466487011] [controller_server]: Activating
+[controller_server-9] [INFO] [1793697208.466507255] [local_costmap.local_costmap]: Activating
+[controller_server-9] [INFO] [1793697208.466511244] [local_costmap.local_costmap]: Checking transform
+[controller_server-9] [INFO] [1793697208.466534279] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[parameter_bridge-2] [INFO] [1793697208.635817204] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793697208.638552549] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/joint_states (gz.msgs.Model) -> joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793697208.641942593] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/odom (gz.msgs.Odometry) -> odom (nav_msgs/msg/Odometry)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793697208.645051808] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/tf (gz.msgs.Pose_V) -> tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793697208.648468283] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu (gz.msgs.IMU) -> imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793697208.651646357] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1793697208.654910015] [ros_gz_bridge]: Creating ROS->GZ Bridge: [cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (gz.msgs.Twist)] (Lazy 0)
+[controller_server-9] [INFO] [1793697208.966990881] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[controller_server-9] [INFO] [1793697209.466939266] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[gz-4] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot3_waffle"]/link[@name="imu_link"]/sensor[@name="tb3_imu"]/gz_frame_id:<data-string>:L49]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz-4] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot3_waffle"]/link[@name="base_scan"]/sensor[@name="hls_lfcd_lds"]/gz_frame_id:<data-string>:L134]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gz-4] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot3_waffle"]/link[@name="camera_link"]/sensor[@name="intel_realsense_r200_depth"]/gz_frame_id:<data-string>:L361]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[controller_server-9] [INFO] [1793697209.966634345] [local_costmap.local_costmap]: Timed out waiting for transform from base_link to odom to become available, tf error: Invalid frame ID "odom" passed to canTransform argument target_frame - frame does not exist
+[amcl-7] [INFO] [1793697210.270714147] [amcl]: createLaserObject
+[controller_server-9] [INFO] [1793697210.466905009] [local_costmap.local_costmap]: start
+[controller_server-9] [WARN] [1793697210.669228985] [controller_server]: Parameter controller_server.verbose not found
+[controller_server-9] [INFO] [1793697210.670838190] [controller_server]: Optimizer reset
+[controller_server-9] [INFO] [1793697210.671097894] [MPPIController]: Activated MPPI Controller: FollowPath
+[controller_server-9] [INFO] [1793697210.671125701] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697210.777338899] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[lifecycle_manager-19] [INFO] [1793697210.777375879] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[smoother_server-10] [INFO] [1793697210.777735160] [smoother_server]: Activating
+[smoother_server-10] [INFO] [1793697210.777763521] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697210.884681571] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[lifecycle_manager-19] [INFO] [1793697210.884723212] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[planner_server-11] [INFO] [1793697210.884985243] [planner_server]: Activating
+[planner_server-11] [INFO] [1793697210.885011003] [global_costmap.global_costmap]: Activating
+[planner_server-11] [INFO] [1793697210.885015513] [global_costmap.global_costmap]: Checking transform
+[planner_server-11] [INFO] [1793697210.885043488] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Invalid frame ID "map" passed to canTransform argument target_frame - frame does not exist
+[amcl-7] [INFO] [1793697211.154008071] [amcl]: initialPoseReceived
+[amcl-7] [WARN] [1793697211.154086523] [amcl]: Failed to transform initial pose in time (Lookup would require extrapolation into the future.  Requested time 1.101000 but the latest data is at time 1.080000, when looking up transform from frame [base_footprint] to frame [odom])
+[amcl-7] [INFO] [1793697211.154093012] [amcl]: Setting pose (1.101000): -2.200 -0.550 0.000
+[planner_server-11] [INFO] [1793697211.385175759] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Lookup would require extrapolation at time 1.296000, but only time 2.200000 is in the buffer, when looking up transform from frame [base_link] to frame [map]
+[planner_server-11] [INFO] [1793697211.885130002] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Lookup would require extrapolation into the past.  Requested time 1.800000 but the earliest data is at time 2.200000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-11] [INFO] [1793697212.385208471] [global_costmap.global_costmap]: start
+[planner_server-11] [INFO] [1793697213.436530360] [planner_server]: Activating plugin GridBased of type NavfnPlanner
+[planner_server-11] [INFO] [1793697213.438638746] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697213.545291492] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[lifecycle_manager-19] [INFO] [1793697213.545332719] [lifecycle_manager_navigation]: [34m[1mActivating route_server[0m[0m
+[route_server-12] [INFO] [1793697213.545601400] [route_server]: Activating
+[route_server-12] [INFO] [1793697213.545728563] [route_server]: Creating bond (route_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697213.652247769] [lifecycle_manager_navigation]: Server route_server connected with bond.
+[lifecycle_manager-19] [INFO] [1793697213.652321814] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-13] [INFO] [1793697213.652687909] [behavior_server]: Activating
+[behavior_server-13] [INFO] [1793697213.652713597] [behavior_server]: Activating spin
+[behavior_server-13] [INFO] [1793697213.652722861] [behavior_server]: Activating backup
+[behavior_server-13] [INFO] [1793697213.652729636] [behavior_server]: Activating drive_on_heading
+[behavior_server-13] [INFO] [1793697213.652736261] [behavior_server]: Activating assisted_teleop
+[behavior_server-13] [INFO] [1793697213.652742146] [behavior_server]: Activating wait
+[behavior_server-13] [INFO] [1793697213.652752926] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697213.759047463] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[lifecycle_manager-19] [INFO] [1793697213.759088182] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[velocity_smoother-16] [INFO] [1793697213.759380859] [velocity_smoother]: Activating
+[velocity_smoother-16] [INFO] [1793697213.759419171] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697213.865750951] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[lifecycle_manager-19] [INFO] [1793697213.865807095] [lifecycle_manager_navigation]: [34m[1mActivating collision_monitor[0m[0m
+[collision_monitor-17] [INFO] [1793697213.866168588] [collision_monitor]: Activating
+[collision_monitor-17] [INFO] [1793697213.866199366] [collision_monitor]: Creating bond (collision_monitor) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697213.974149811] [lifecycle_manager_navigation]: Server collision_monitor connected with bond.
+[lifecycle_manager-19] [INFO] [1793697213.974201207] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-14] [INFO] [1793697213.974471419] [bt_navigator]: Activating
+[bt_navigator-14] [INFO] [1793697214.057642960] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697214.166021091] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[lifecycle_manager-19] [INFO] [1793697214.166067334] [lifecycle_manager_navigation]: [34m[1mActivating waypoint_follower[0m[0m
+[waypoint_follower-15] [INFO] [1793697214.166391833] [waypoint_follower]: Activating
+[waypoint_follower-15] [INFO] [1793697214.166421691] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697214.273532988] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[lifecycle_manager-19] [INFO] [1793697214.273576933] [lifecycle_manager_navigation]: [34m[1mActivating docking_server[0m[0m
+[opennav_docking-18] [INFO] [1793697214.273896624] [docking_server]: Activating docking_server
+[opennav_docking-18] [INFO] [1793697214.285182498] [docking_server]: Creating bond (docking_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697214.392840184] [lifecycle_manager_navigation]: Server docking_server connected with bond.
+[lifecycle_manager-19] [INFO] [1793697214.392902468] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-19] [INFO] [1793697214.392908729] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[bt_navigator-14] [INFO] [1793697217.746689691] [bt_navigator]: Begin navigating from current location (-2.13, -0.57) to (2.00, 0.50)
+[controller_server-9] [INFO] [1793697217.767835985] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [WARN] [1793697217.767912801] [controller_server]: No goal checker was specified in parameter 'current_goal_checker'. Server will use only plugin loaded general_goal_checker . This warning will appear once.
+[controller_server-9] [WARN] [1793697217.767936589] [controller_server]: No progress checker was specified in parameter 'current_progress_checker'. Server will use only plugin loaded progress_checker . This warning will appear once.
+[parameter_bridge-2] [INFO] [1793697217.830612895] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[controller_server-9] [INFO] [1793697218.818144964] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697219.868140864] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697220.868130334] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697221.868136669] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697222.918192302] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697223.968415246] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697224.968141468] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697226.018130279] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697227.018131147] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697228.018135393] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697229.068133525] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697230.068138912] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697231.118130700] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697232.168129277] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697233.168213915] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697234.168126144] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697235.218134868] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697236.218132777] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697236.268190487] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697236.269925248] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697236.269996669] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-9] [INFO] [1793697236.287348863] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-9] [INFO] [1793697236.288070831] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [WARN] [1793697236.472450702] [controller_server]: Control loop missed its desired rate of 20.0000 Hz. Current loop rate is 5.4645 Hz.
+[controller_server-9] [INFO] [1793697237.272605126] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697238.272586677] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697239.322656519] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697240.322683048] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697241.372651984] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697242.372637783] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697243.422625503] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697244.422717890] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697245.472582125] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697246.472608125] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697246.472915684] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697246.473423670] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697246.473477171] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-9] [INFO] [1793697246.497417686] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-11] [INFO] [1793697246.497790680] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[planner_server-11] [WARN] [1793697247.389243484] [planner_server]: Planner loop missed its desired rate of 20.0000 Hz. Current loop rate is 1.1223 Hz
+[controller_server-9] [INFO] [1793697247.407484890] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [INFO] [1793697248.457740953] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697249.457678509] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697250.507720538] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697251.507644436] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697252.507859573] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697253.557779310] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697254.557659570] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697255.607653796] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697256.607642060] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697257.407722272] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697257.408363434] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697257.408423121] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-9] [INFO] [1793697257.427269422] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-9] [INFO] [1793697257.427774669] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [INFO] [1793697257.628019894] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697258.677929148] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697259.677936781] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697260.727969951] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697261.727945361] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697262.778052698] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697263.777938636] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697264.777935860] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697265.827948879] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697266.877944777] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697267.478041649] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697267.478926672] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697267.479016569] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[behavior_server-13] [INFO] [1793697267.497610089] [behavior_server]: Running spin
+[behavior_server-13] [INFO] [1793697267.497793918] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-13] [INFO] [1793697269.398198322] [behavior_server]: spin completed successfully
+[controller_server-9] [INFO] [1793697269.437679040] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [INFO] [1793697270.488002115] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697271.538002336] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697272.538144582] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697273.538004240] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697274.588100252] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697275.588007194] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697276.638121612] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697277.638068199] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697278.688180504] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697279.488043674] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697279.488642632] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697279.488692807] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-9] [INFO] [1793697279.507234439] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-9] [INFO] [1793697279.507744315] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [WARN] [1793697279.671887638] [controller_server]: Control loop missed its desired rate of 20.0000 Hz. Current loop rate is 6.0606 Hz.
+[controller_server-9] [INFO] [1793697279.722176490] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697280.722043017] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697281.772211136] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697282.772176189] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697283.772050754] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697284.822167246] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697285.822034053] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697286.872032707] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697287.872033288] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697288.922232331] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697289.672245544] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697289.672882370] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697289.672951640] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[behavior_server-13] [INFO] [1793697289.687654146] [behavior_server]: Running wait
+[behavior_server-13] [INFO] [1793697294.788131451] [behavior_server]: wait completed successfully
+[controller_server-9] [INFO] [1793697294.827329290] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [INFO] [1793697295.877487041] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697296.927531944] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697297.927641873] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697298.977565734] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697299.977602088] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697301.027482121] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697302.027494145] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697303.077541190] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697304.077514531] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697304.877530399] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697304.878251007] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697304.878307849] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-9] [INFO] [1793697304.897297971] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-9] [INFO] [1793697304.898222624] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [WARN] [1793697305.072051124] [controller_server]: Control loop missed its desired rate of 20.0000 Hz. Current loop rate is 5.7471 Hz.
+[controller_server-9] [INFO] [1793697305.122374150] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697306.122210483] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697307.172408921] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697308.172243408] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697309.222198603] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697310.222594136] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697311.222319490] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697312.272303509] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697313.272323630] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697314.272210130] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697315.072338004] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697315.072965717] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697315.073007997] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[behavior_server-13] [INFO] [1793697315.087791003] [behavior_server]: Running backup
+[behavior_server-13] [INFO] [1793697317.288053469] [behavior_server]: backup completed successfully
+[controller_server-9] [INFO] [1793697317.327364649] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [INFO] [1793697318.377537431] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697319.377528650] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697320.427538823] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697321.427531387] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697322.477538739] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697323.477535759] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697324.477534781] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697325.527520583] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697326.527513197] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697327.377560582] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697327.378194737] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697327.378256832] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-9] [INFO] [1793697327.397497419] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-9] [INFO] [1793697327.397964043] [controller_server]: Received a goal, begin computing control effort.
+[controller_server-9] [WARN] [1793697327.471235918] [controller_server]: Control loop missed its desired rate of 20.0000 Hz. Current loop rate is 13.8889 Hz.
+[controller_server-9] [INFO] [1793697327.571369327] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697328.571432293] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697329.621503136] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697330.621438458] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697331.671373658] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697332.671384774] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697333.721401919] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697334.721402746] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697335.721510468] [controller_server]: Passing new path to controller.
+[controller_server-9] [INFO] [1793697336.771458194] [controller_server]: Passing new path to controller.
+[controller_server-9] [ERROR] [1793697337.471435980] [controller_server]: Failed to make progress
+[controller_server-9] [INFO] [1793697337.472141522] [controller_server]: Optimizer reset
+[controller_server-9] [WARN] [1793697337.472211874] [controller_server]: [follow_path] [ActionServer] Aborting handle.
+[controller_server-9] [INFO] [1793697337.487286335] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-11] [INFO] [1793697337.487586445] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[bt_navigator-14] [ERROR] [1793697337.757629726] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for compute_path_to_pose in node halt!
+[bt_navigator-14] [INFO] [1793697337.757896637] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-14] [INFO] [1793697337.758184049] [bt_navigator]: Goal canceled
+[lifecycle_manager-19] [INFO] [1793697337.993118593] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-19] [INFO] [1793697337.993180850] [lifecycle_manager_navigation]: [34m[1mShutting down managed nodes...[0m[0m
+[lifecycle_manager-19] [INFO] [1793697337.993186320] [lifecycle_manager_navigation]: [34m[1mDeactivate, cleanup, and shutdown nodes[0m[0m
+[lifecycle_manager-19] [INFO] [1793697337.993188959] [lifecycle_manager_navigation]: [34m[1mDeactivating docking_server[0m[0m
+[opennav_docking-18] [INFO] [1793697337.993683419] [docking_server]: Deactivating docking_server
+[opennav_docking-18] [INFO] [1793697338.001562969] [docking_server]: Destroying bond (docking_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697338.113943479] [lifecycle_manager_navigation]: [34m[1mDeactivating waypoint_follower[0m[0m
+[waypoint_follower-15] [INFO] [1793697338.114265621] [waypoint_follower]: Deactivating
+[waypoint_follower-15] [INFO] [1793697338.114317191] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697338.226998085] [lifecycle_manager_navigation]: [34m[1mDeactivating bt_navigator[0m[0m
+[bt_navigator-14] [INFO] [1793697338.227357049] [bt_navigator]: Deactivating
+[bt_navigator-14] [INFO] [1793697338.227396043] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697338.340790517] [lifecycle_manager_navigation]: [34m[1mDeactivating collision_monitor[0m[0m
+[collision_monitor-17] [INFO] [1793697338.341165813] [collision_monitor]: Deactivating
+[collision_monitor-17] [INFO] [1793697338.341215734] [collision_monitor]: Destroying bond (collision_monitor) to lifecycle manager.
+[planner_server-11] [INFO] [1793697338.388695510] [planner_server]: Goal was canceled. Canceling planning action.
+[planner_server-11] [INFO] [1793697338.388740764] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[lifecycle_manager-19] [INFO] [1793697338.454748411] [lifecycle_manager_navigation]: [34m[1mDeactivating velocity_smoother[0m[0m
+[velocity_smoother-16] [INFO] [1793697338.455053108] [velocity_smoother]: Deactivating
+[velocity_smoother-16] [INFO] [1793697338.455093467] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697338.568009292] [lifecycle_manager_navigation]: [34m[1mDeactivating behavior_server[0m[0m
+[behavior_server-13] [INFO] [1793697338.568293333] [behavior_server]: Deactivating
+[behavior_server-13] [INFO] [1793697338.568351297] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697338.681469516] [lifecycle_manager_navigation]: [34m[1mDeactivating route_server[0m[0m
+[route_server-12] [INFO] [1793697338.681837433] [route_server]: Deactivating
+[route_server-12] [INFO] [1793697338.681927330] [route_server]: Destroying bond (route_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697338.794858878] [lifecycle_manager_navigation]: [34m[1mDeactivating planner_server[0m[0m
+[planner_server-11] [INFO] [1793697338.795139868] [planner_server]: Deactivating
+[planner_server-11] [INFO] [1793697338.795161699] [global_costmap.global_costmap]: Deactivating
+[planner_server-11] [INFO] [1793697339.385544288] [planner_server]: Deactivating plugin GridBased of type NavfnPlanner
+[planner_server-11] [INFO] [1793697339.385603583] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697339.498051030] [lifecycle_manager_navigation]: [34m[1mDeactivating smoother_server[0m[0m
+[smoother_server-10] [INFO] [1793697339.498314897] [smoother_server]: Deactivating
+[smoother_server-10] [INFO] [1793697339.498370596] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697339.611461225] [lifecycle_manager_navigation]: [34m[1mDeactivating controller_server[0m[0m
+[controller_server-9] [INFO] [1793697339.611821290] [controller_server]: Deactivating
+[controller_server-9] [INFO] [1793697339.611860725] [MPPIController]: Deactivated MPPI Controller: FollowPath
+[controller_server-9] [INFO] [1793697339.611869945] [local_costmap.local_costmap]: Deactivating
+[controller_server-9] [INFO] [1793697339.667241158] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[lifecycle_manager-19] [INFO] [1793697339.780463657] [lifecycle_manager_navigation]: [34m[1mCleaning up docking_server[0m[0m
+[opennav_docking-18] [INFO] [1793697339.780756014] [docking_server]: Cleaning up docking_server
+[lifecycle_manager-19] [INFO] [1793697339.797480957] [lifecycle_manager_navigation]: [34m[1mCleaning up waypoint_follower[0m[0m
+[waypoint_follower-15] [INFO] [1793697339.797702090] [waypoint_follower]: Cleaning up
+[lifecycle_manager-19] [INFO] [1793697339.811476222] [lifecycle_manager_navigation]: [34m[1mCleaning up bt_navigator[0m[0m
+[bt_navigator-14] [INFO] [1793697339.811653081] [bt_navigator]: Cleaning up
+[bt_navigator-14] [INFO] [1793697339.919015592] [bt_navigator]: Completed Cleaning up
+[lifecycle_manager-19] [INFO] [1793697339.919434088] [lifecycle_manager_navigation]: [34m[1mCleaning up collision_monitor[0m[0m
+[collision_monitor-17] [INFO] [1793697339.919580171] [collision_monitor]: Cleaning up
+[collision_monitor-17] [INFO] [1793697339.922497997] [collision_monitor]: [FootprintApproach]: Destroying Polygon
+[collision_monitor-17] [INFO] [1793697339.923307883] [collision_monitor]: [scan]: Destroying Scan
+[lifecycle_manager-19] [INFO] [1793697339.926006531] [lifecycle_manager_navigation]: [34m[1mCleaning up velocity_smoother[0m[0m
+[velocity_smoother-16] [INFO] [1793697339.926150194] [velocity_smoother]: Cleaning up
+[lifecycle_manager-19] [INFO] [1793697339.928264150] [lifecycle_manager_navigation]: [34m[1mCleaning up behavior_server[0m[0m
+[behavior_server-13] [INFO] [1793697339.928586709] [behavior_server]: Cleaning up
+[lifecycle_manager-19] [INFO] [1793697339.959867087] [lifecycle_manager_navigation]: [34m[1mCleaning up route_server[0m[0m
+[route_server-12] [INFO] [1793697339.960013045] [route_server]: Cleaning up
+[lifecycle_manager-19] [INFO] [1793697339.976276402] [lifecycle_manager_navigation]: [34m[1mCleaning up planner_server[0m[0m
+[planner_server-11] [INFO] [1793697339.976479585] [planner_server]: Cleaning up
+[planner_server-11] [INFO] [1793697339.986739579] [global_costmap.global_costmap]: Cleaning up
+[planner_server-11] [INFO] [1793697339.992520379] [planner_server]: Cleaning up plugin GridBased of type NavfnPlanner
+[planner_server-11] [INFO] [1793697339.992655211] [planner_server]: Destroying plugin GridBased of type NavfnPlanner
+[lifecycle_manager-19] [INFO] [1793697340.010453002] [lifecycle_manager_navigation]: [34m[1mCleaning up smoother_server[0m[0m
+[smoother_server-10] [INFO] [1793697340.010665325] [smoother_server]: Cleaning up
+[lifecycle_manager-19] [INFO] [1793697340.019400539] [lifecycle_manager_navigation]: [34m[1mCleaning up controller_server[0m[0m
+[controller_server-9] [INFO] [1793697340.019532296] [controller_server]: Cleaning up
+[controller_server-9] [INFO] [1793697340.023160571] [MPPIController]: Cleaned up MPPI Controller: FollowPath
+[controller_server-9] [INFO] [1793697340.023406221] [local_costmap.local_costmap]: Cleaning up
+[lifecycle_manager-19] [INFO] [1793697340.051353481] [lifecycle_manager_navigation]: [34m[1mShutting down docking_server[0m[0m
+[opennav_docking-18] [INFO] [1793697340.051489331] [docking_server]: Shutting down docking_server
+[lifecycle_manager-19] [INFO] [1793697340.051787709] [lifecycle_manager_navigation]: [34m[1mShutting down waypoint_follower[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.052177633] [lifecycle_manager_navigation]: [34m[1mShutting down bt_navigator[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.052538653] [lifecycle_manager_navigation]: [34m[1mShutting down collision_monitor[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.052912668] [lifecycle_manager_navigation]: [34m[1mShutting down velocity_smoother[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.053302991] [lifecycle_manager_navigation]: [34m[1mShutting down behavior_server[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.053683404] [lifecycle_manager_navigation]: [34m[1mShutting down route_server[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.054278334] [lifecycle_manager_navigation]: [34m[1mShutting down planner_server[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.054666783] [lifecycle_manager_navigation]: [34m[1mShutting down smoother_server[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.055072184] [lifecycle_manager_navigation]: [34m[1mShutting down controller_server[0m[0m
+[lifecycle_manager-19] [INFO] [1793697340.055348359] [lifecycle_manager_navigation]: [34m[1mDestroying lifecycle service clients[0m[0m
+[waypoint_follower-15] [INFO] [1793697340.051917218] [waypoint_follower]: Shutting down
+[bt_navigator-14] [INFO] [1793697340.052299560] [bt_navigator]: Shutting down
+[collision_monitor-17] [INFO] [1793697340.052688957] [collision_monitor]: Shutting down
+[velocity_smoother-16] [INFO] [1793697340.053095507] [velocity_smoother]: Shutting down
+[behavior_server-13] [INFO] [1793697340.053429078] [behavior_server]: Shutting down
+[route_server-12] [INFO] [1793697340.053821813] [route_server]: Shutting down
+[planner_server-11] [INFO] [1793697340.054420535] [planner_server]: Shutting down
+[smoother_server-10] [INFO] [1793697340.054821869] [smoother_server]: Shutting down
+[controller_server-9] [INFO] [1793697340.055171023] [controller_server]: Shutting down
+[lifecycle_manager-19] [INFO] [1793697340.076461243] [lifecycle_manager_navigation]: [34m[1mManaged nodes have been shut down[0m[0m
+[lifecycle_manager-8] [INFO] [1793697340.079805629] [lifecycle_manager_localization]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-8] [INFO] [1793697340.079862482] [lifecycle_manager_localization]: [34m[1mShutting down managed nodes...[0m[0m
+[lifecycle_manager-8] [INFO] [1793697340.079868670] [lifecycle_manager_localization]: [34m[1mDeactivate, cleanup, and shutdown nodes[0m[0m
+[lifecycle_manager-8] [INFO] [1793697340.079872705] [lifecycle_manager_localization]: [34m[1mDeactivating amcl[0m[0m
+[amcl-7] [INFO] [1793697340.080145328] [amcl]: Deactivating
+[amcl-7] [INFO] [1793697340.080212124] [amcl]: Destroying bond (amcl) to lifecycle manager.
+[lifecycle_manager-8] [INFO] [1793697340.192648763] [lifecycle_manager_localization]: [34m[1mDeactivating map_server[0m[0m
+[map_server-6] [INFO] [1793697340.192920278] [map_server]: Deactivating
+[map_server-6] [INFO] [1793697340.192950413] [map_server]: Destroying bond (map_server) to lifecycle manager.
+[lifecycle_manager-8] [INFO] [1793697340.305682888] [lifecycle_manager_localization]: [34m[1mCleaning up amcl[0m[0m
+[amcl-7] [INFO] [1793697340.305916039] [amcl]: Cleaning up
+[lifecycle_manager-8] [INFO] [1793697340.315497117] [lifecycle_manager_localization]: [34m[1mCleaning up map_server[0m[0m
+[map_server-6] [INFO] [1793697340.315619735] [map_server]: Cleaning up
+[lifecycle_manager-8] [INFO] [1793697340.318580678] [lifecycle_manager_localization]: [34m[1mShutting down amcl[0m[0m
+[amcl-7] [INFO] [1793697340.318725349] [amcl]: Shutting down
+[lifecycle_manager-8] [INFO] [1793697340.318961229] [lifecycle_manager_localization]: [34m[1mShutting down map_server[0m[0m
+[map_server-6] [INFO] [1793697340.319056430] [map_server]: Shutting down
+[lifecycle_manager-8] [INFO] [1793697340.319238173] [lifecycle_manager_localization]: [34m[1mDestroying lifecycle service clients[0m[0m
+[lifecycle_manager-8] [INFO] [1793697340.322907503] [lifecycle_manager_localization]: [34m[1mManaged nodes have been shut down[0m[0m

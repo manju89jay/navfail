@@ -1,0 +1,49 @@
+{
+  "incident": "W-warehouse",
+  "stamp": "20261104-060153",
+  "gui": false,
+  "versions": {
+    "ros-jazzy-nav2-bringup": "1.3.13-1noble.20261006.042503",
+    "ros-jazzy-nav2-minimal-tb3-sim": "1.0.1-1noble.20261006.041307",
+    "ros-jazzy-navigation2": "1.3.13-1noble.20260921.033624",
+    "ros-jazzy-ros-gz-bridge": "1.0.24-1noble.20260920.234644",
+    "gz sim": "Gazebo Sim, version 8.15.0"
+  },
+  "files": {
+    "nav2_params.yaml": "3939a87cb7b7664ab18649627ed2378f94c412da04ddb60998f33566b436d06c",
+    "map.yaml": "75a4b6f2f25e473b63fd4b7ffdcee8e40e9c79b74034760d495a999cc037f493",
+    "map.pgm": "7bb3876f7212c66cf26997d83601f28f1011a46c1ee7cf74afc0329211e03487",
+    "incident.json": "754526f2257d6dceca888b782c04b7107fdea1ad9761ed76f0b7a804e5d1181b",
+    "world.sdf.xacro": "c5329f8abeb31d0f6d82ba7feb6f11a59a0938f09220647a822513e241ea4d35",
+    "robot.sdf.xacro": "e24ec21426bf58ecd535650fea137626f7ce924fc39a78b00609155379b40f8b"
+  },
+  "observed": {
+    "nav2_result": "SUCCEEDED",
+    "reached_goal": true,
+    "final_goal_distance_m": 0.089,
+    "longest_still_ms": 3102,
+    "longest_still_at": [
+      1.78,
+      -0.52
+    ],
+    "duration_ms": 13200
+  },
+  "ended": "result",
+  "ready_s": 8.5,
+  "bag_missing_topics": [],
+  "nav2_error": {
+    "code": 0,
+    "message": ""
+  },
+  "teardown": {
+    "bag": "SIGINT",
+    "nav2_shutdown": "done",
+    "node": "done",
+    "rclpy": "done",
+    "launch": "SIGTERM",
+    "bridge": "SIGTERM",
+    "leftover": []
+  },
+  "wall_s": 27.1,
+  "private_hits": []
+}

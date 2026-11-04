@@ -1,0 +1,27 @@
+{
+  "search": "g2-random",
+  "proven": true,
+  "runs_used": 8,
+  "budget": 10,
+  "candidates": [
+    {
+      "changes": {
+        "inflation_layer.cost_scaling_factor": 9.0955,
+        "inflation_layer.inflation_radius": 0.4485,
+        "CostCritic.cost_weight": 5.4933
+      },
+      "reason": "random draw (seed 20261028)",
+      "status": "proven",
+      "non_valid": [],
+      "verdict": {
+        "proven": true,
+        "site_passed": 5,
+        "site_valid": 5,
+        "collisions": 0,
+        "empty_passed": 3,
+        "empty_valid": 3,
+        "runs_counted": 8
+      }
+    }
+  ]
+}
